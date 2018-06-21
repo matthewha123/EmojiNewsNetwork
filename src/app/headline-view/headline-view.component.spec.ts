@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeadlineComponent } from './headline.component';
+import { HeadlineViewComponent } from './headline-view.component';
 
-describe('HeadlineComponent', () => {
-  let component: HeadlineComponent;
-  let fixture: ComponentFixture<HeadlineComponent>;
+describe('HeadlineViewComponent', () => {
+  let component: HeadlineViewComponent;
+  let fixture: ComponentFixture<HeadlineViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeadlineComponent ]
+      declarations: [ HeadlineViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeadlineComponent);
+    fixture = TestBed.createComponent(HeadlineViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
