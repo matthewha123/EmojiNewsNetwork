@@ -1,0 +1,19 @@
+p {
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	font-size: 36pt;
+	position: relative;
+	padding-top: 20px;
+	margin-top:0px;
+	margin-bottom: 10px;
+	margin-left: 2vw;
+}
+
+.navbox {
+	background-color: #28f0ff;
+	width: 100vw;
+	position: relative;
+	height: 9vh;
+	left: 0;
+	top: 0;
+}
