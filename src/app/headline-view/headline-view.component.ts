@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeadlineService } from '../headline.service';
-import { HEADLINES } from '../mock-headlines'
+import { HEADLINES } from '../mock-headlines';
+import { HlMovementComponent } from '../hl-movement/hl-movement.component'
 
 @Component({
   selector: 'app-headline-view',

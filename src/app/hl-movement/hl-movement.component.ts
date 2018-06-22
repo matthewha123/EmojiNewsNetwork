@@ -13,4 +13,11 @@ export class HlMovementComponent implements OnInit {
   ngOnInit() {
   }
 
+  backward() {
+  	console.log("BACKWARD!!!");
+  }
+  forward() {
+  	console.log("FOWARD!!!!");
+  }
+
 }

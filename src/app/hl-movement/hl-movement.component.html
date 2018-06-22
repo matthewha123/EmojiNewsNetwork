@@ -1,1 +1,6 @@
-<h1>{{dir}}</h1>
+<div *ngIf="dir==='left'">
+	<i class="fa fa-angle-left arrow" (click)="backward()"></i>
+</div>
+<div *ngIf="dir==='right'">
+	<i class="fa fa-angle-right arrow" (click)="forward()"></i>
+</div>

@@ -21,7 +21,6 @@ export class HeadlineService {
   			return res['articles'].map(article => {
   				this.parseHeadline(article);
   			});
-  			console.log(res.keys()
   		});
   }
 
