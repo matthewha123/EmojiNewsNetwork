@@ -1,0 +1,13 @@
+.info {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.text {
+	font-size: 20pt;
+}
+.meta {
+	font-size: 12pt;
+}

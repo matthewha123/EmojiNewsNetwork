@@ -1,11 +1,11 @@
 <div class="row container">
-	<div class = "col" align="center">
-	<app-hl-movement [dir]="'left'"></app-hl-movement>
+	<div class = "col">
+	<app-hl-movement [dir]="'left'" (click)="info.backward()" align = "center"></app-hl-movement>
 	</div>
-	<div class="col-5">
-      <app-hl-info></app-hl-info>
+	<div class="col-8" position = "relative">
+      <app-hl-info #info></app-hl-info>
     </div>
-	<div class = "col" align = "center">
-	<app-hl-movement [dir]="'right'"></app-hl-movement>
+	<div class = "col">
+	<app-hl-movement [dir]="'right'" (click)="info.forward()" align = "center"></app-hl-movement>
 	</div>
 </div>

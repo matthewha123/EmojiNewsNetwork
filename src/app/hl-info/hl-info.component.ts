@@ -18,6 +18,23 @@ export class HlInfoComponent implements OnInit {
   	this.display = HEADLINES[this.idx];
   }
 
+  forward() {
+  	console.log("moving forward");
+  	this.idx += 1;
+  	if (this.idx >= HEADLINES.length) {
+  		this.idx = 0;
+  	}
+  	this.display = HEADLINES[this.idx];
+  }
+  backward() {
+  	this.idx += -1;
+  	if (this.idx < 0) {
+  		this.idx = HEADLINES.length - 1;
+  	}
+  	this.display = HEADLINES[this.idx];
+  	console.log("moving backward");
+  }
+
 
 
 }
