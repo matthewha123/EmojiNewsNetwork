@@ -24,6 +24,7 @@ import { EmojiService } from '../emoji.service';
         (focus)="onFocus($event)"
         (ngModelChange)="onChange($event)"
         [(ngModel)]="input"/>
+    <div class = "container">
     <div class="emoji-search"
       [ngClass]="[popupAnchor, searchClass]"
       [hidden]="!popupOpen"
@@ -33,6 +34,7 @@ import { EmojiService } from '../emoji.service';
         <input type="search" placeholder="Search..."
           [(ngModel)]="filterEmojis"
           (ngModelChange)="updateFilteredEmojis()"/>
+          <button (click)="onClose()">Close</button>
       </div>
       <div class="emojis-container">
         <span *ngFor="let emoji of filteredEmojis"
@@ -75,6 +77,7 @@ import { EmojiService } from '../emoji.service';
         padding: 4px 8px;
         margin: 0;
         height: 30px;
+        width:20vw;
       }
       :host .emoji-search .search-header {
         background-color: #eee;
@@ -82,6 +85,7 @@ import { EmojiService } from '../emoji.service';
         border-radius: 4px 4px 0 0;
         padding: 4px 8px;
         width: 100%;
+        width:50vw;
       }
       :host .emoji-search .emojis-container {
         border-radius: 0 0 4px 4px;
@@ -93,6 +97,7 @@ import { EmojiService } from '../emoji.service';
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        width:50vw;
       }
       :host .emoji-search span {
         cursor: pointer;
@@ -101,6 +106,9 @@ import { EmojiService } from '../emoji.service';
       }
       :host .emoji-search span:hover {
         background-color: #ccc;
+      }
+      .container {
+        width:50vw;
       }
 
   `]
@@ -182,7 +190,11 @@ export class EmojiInputComponent implements OnInit, AfterViewInit, OnChanges {
   }
   onClick(event) {
     console.log("toggling");
-    this.popupOpen = !this.popupOpen;
+    this.popupOpen = true;
+  }
+ onClose(event) {
+    console.log("toggling");
+    this.popupOpen = false;
   }
   onBigBlur(event) {
     console.log("just blurred");
