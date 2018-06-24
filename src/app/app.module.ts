@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HlMovementComponent } from './hl-movement/hl-movement.component';
 import { HeadlineViewComponent } from './headline-view/headline-view.component';
 import { HlInfoComponent } from './hl-info/hl-info.component';
+import { EmojiPickerModule } from './emoji-picker/emoji-picker.module'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HlInfoComponent } from './hl-info/hl-info.component';
     BrowserModule,
     HttpClientModule,
     AngularFontAwesomeModule,
+    EmojiPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
