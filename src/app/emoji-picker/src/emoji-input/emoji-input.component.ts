@@ -14,21 +14,9 @@ import { EmojiService } from '../emoji.service';
 @Component({
   selector: 'emoji-input',
   template: `
-    <ng-template [ngIf]="textArea">
-      <textarea #textareaEl name="text"
-        [ngClass]="[inputClass]"
-        [attr.cols]="textArea.cols"
-        [attr.rows]="textArea.rows"
-        (keyup)="onKeyup($event)"
-        (keyup.enter)="onEnter()"
-        (blur)="onBlur($event)"
-        (focus)="onFocus($event)"
-        (ngModelChange)="onChange($event)"
-        [(ngModel)]="input">
-      </textarea>
-    </ng-template>
-    <ng-template [ngIf]="!textArea">
+    <div tabindex="-1" (blur)="onBigBlur($event)">
       <input #inputEl type="text"
+        (click)="onClick($event)"
         [ngClass]="[inputClass]"
         (keyup)="onKeyup($event)"
         (keyup.enter)="onEnter()"
@@ -36,7 +24,6 @@ import { EmojiService } from '../emoji.service';
         (focus)="onFocus($event)"
         (ngModelChange)="onChange($event)"
         [(ngModel)]="input"/>
-    </ng-template>
     <div class="emoji-search"
       [ngClass]="[popupAnchor, searchClass]"
       [hidden]="!popupOpen"
@@ -54,6 +41,7 @@ import { EmojiService } from '../emoji.service';
           {{emoji.emoji}}
         </span>
       </div>
+    </div>
     </div>
   `,
   styles: [`
@@ -185,13 +173,20 @@ export class EmojiInputComponent implements OnInit, AfterViewInit, OnChanges {
       this.blur.emit(event);
     }
   }
+
   onFocus(event) {
     this.updateCursor();
     if (this.focus) {
       this.focus.emit(event);
     }
   }
-
+  onClick(event) {
+    console.log("toggling");
+    this.popupOpen = !this.popupOpen;
+  }
+  onBigBlur(event) {
+    console.log("just blurred");
+  }
   clean() {
     this.filterEmojis = '';
     this.filteredEmojis = this.getFilteredEmojis();
