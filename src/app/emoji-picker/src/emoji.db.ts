@@ -271,6 +271,24 @@ export const EMOJI_DB: any = [{
     "scared", "shocked", "oops"
   ]
 }, {
+  "emoji":"🤯",
+  "description": "exploding head",
+  "aliases": [
+    "exploding head",
+    "exploding",
+    "head",
+    "shocked",
+    "mind-blown"
+  ],
+  "tags": [
+      "exploding head",
+      "shocked",
+      "mind-blown"
+  ]
+
+},
+  
+{
   "emoji": "😱",
   "description": "face screaming in fear",
   "aliases": [
@@ -6567,104 +6585,6 @@ export const EMOJI_DB: any = [{
     "small_blue_diamond"
   ],
   "tags": []
-}, {
-  "aliases": [
-    "basecamp"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "basecampy"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "bowtie"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "feelsgood"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "finnadie"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "fu"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "goberserk"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "godmode"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "hurtrealbad"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "metal"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "neckbeard"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "octocat"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "rage1"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "rage2"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "rage3"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "rage4"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "shipit", "squirrel"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "suspect"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "taco"
-  ],
-  "tags": []
-}, {
-  "aliases": [
-    "trollface"
-  ],
-  "tags": []
-}]
+},
+
+]
