@@ -4,6 +4,7 @@ import { Observable, of} from 'rxjs';
 import { news_key } from './api-keys';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { HEADLINES } from './mock-headlines'
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,17 @@ export class HeadlineService {
   constructor(private http: HttpClient) { }
 
   getHeadlines() {
-  	let res = this.http.get(this.news_url)
-  		.subscribe(res => {
-  			return res['articles'].map(article => {
-  				this.parseHeadline(article);
-  			});
-  		});
+    /*
+    KEEP THIS CODE!
+    THIS IS FOR actual NETWORKING
+    */
+  	// let res = this.http.get(this.news_url)
+  	// 	.subscribe(res => {
+  	// 		return res['articles'].map(article => {
+  	// 			this.parseHeadline(article);
+  	// 		});
+  	// 	});
+    return HEADLINES;
   }
 
   getUnparsedHeadlines() {

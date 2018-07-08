@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HeadLine } from '../headline';
 import { HEADLINES } from '../mock-headlines';
 
@@ -9,13 +9,13 @@ import { HEADLINES } from '../mock-headlines';
 })
 export class HlInfoComponent implements OnInit {
 
-	display: HeadLine;
+	@Input() display: HeadLine;
 	idx: number;
   constructor() { }
 
   ngOnInit() {
   	this.idx = 0;
-  	this.display = HEADLINES[this.idx];
+  	this.display = HEADLINES[this.idx]; //TODO make service to serve the headline
   }
 
   forward() {

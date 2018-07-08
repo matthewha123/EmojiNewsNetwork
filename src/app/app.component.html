@@ -1,6 +1,7 @@
 <!-- Top Nav Bar that should be its own component-->
 <app-navbar></app-navbar>
 <div align="center">
-<app-headline-view></app-headline-view>
+<app-headline-view #hl (headlineChange) = "onHeadLineChange($event)"></app-headline-view>
 </div>
 <app-emoji-input (SubmittedEmoji)="onEmojiSubmit($event)"></app-emoji-input>
+<app-translations-master [headline]="activeHeadLine.text"></app-translations-master>

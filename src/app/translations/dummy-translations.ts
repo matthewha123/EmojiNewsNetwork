@@ -1,6 +1,7 @@
 import { Translation } from './translation'
 
 export const DummyTranslations = {
+	property: "value",
 	"Children Increasingly Likely To Torture Squirrels following release of Alvin and the Chipmunk’s 4": [
 		new Translation("🐵 🙈 🙉 🙊 🐒", 9999, "matthew", "2018-07-08"),
 		new Translation("🦂 🐢 🐍 🦎 🦖 🦕 👩🏽‍🏭 👨🏽‍🏭 👩🏽‍💻 👨🏽‍💻 👩🏽‍💼 👨🏽‍💼 👩🏽‍🔧 👨🏽‍🔧 👩🏽‍🔬 👨🏽‍🔬 👩🏽‍🎨 👨🏽‍🎨 👩🏽‍🚒 👨🏽‍🚒 👩🏽‍✈️ 👨🏽‍✈️ 👩🏽‍🚀 👨🏽‍🚀 👩🏽‍⚖️ 👨🏽‍⚖️🌔 🌙 🌎 🌍 🌏", 100, "stupid-piece-of-shit", "2018-07-04"),

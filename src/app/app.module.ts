@@ -10,7 +10,8 @@ import { HeadlineViewComponent } from './headline-view/headline-view.component';
 import { HlInfoComponent } from './hl-info/hl-info.component';
 import { EmojiPickerModule } from './emoji-picker/emoji-picker.module';
 import { EmojiInputComponent } from './emoji-input/emoji-input.component';
-import { TranslationComponent } from './translations/translation/translation.component'
+import { TranslationComponent } from './translations/translation/translation.component';
+import { TranslationsMasterComponent } from './translations/translations-master/translations-master.component'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TranslationComponent } from './translations/translation/translation.com
     HlInfoComponent,
     EmojiInputComponent,
     TranslationComponent,
+    TranslationsMasterComponent,
   ],
   imports: [
     BrowserModule,

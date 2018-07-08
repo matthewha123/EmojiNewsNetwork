@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TranslationService } from '../translation.service';
+import { Translation } from '../translation';
 
 @Component({
   selector: 'app-translation',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TranslationComponent implements OnInit {
 
+	@Input() translation: Translation;
   constructor() { }
 
   ngOnInit() {
