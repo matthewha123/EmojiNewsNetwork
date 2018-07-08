@@ -15,7 +15,7 @@ import { EmojiService } from '../emoji.service';
   selector: 'emoji-input',
   template: `
     <div tabindex="-1" (blur)="onBigBlur($event)">
-      <input #inputEl type="text"
+      <input #inputEl type="text" class="form-control input-sm"
         (click)="onClick($event)"
         [ngClass]="[inputClass]"
         (keyup)="onKeyup($event)"
@@ -24,17 +24,24 @@ import { EmojiService } from '../emoji.service';
         (focus)="onFocus($event)"
         (ngModelChange)="onChange($event)"
         [(ngModel)]="input"/>
+    <div class="sticky-emoji">
     <div class = "container">
     <div class="emoji-search"
       [ngClass]="[popupAnchor, searchClass]"
       [hidden]="!popupOpen"
       [style.display]="popupOpen ? 'flex' : 'none'"
       (click)="$event.stopPropagation()">
-      <div class="search-header">
-        <input type="search" placeholder="Search..."
+      <div class="search-header form-inline container-fluid">
+        <div class="row">
+        <div class="col">
+        <input type="search" class="form-control mr-sm-2" placeholder="Search..."
           [(ngModel)]="filterEmojis"
           (ngModelChange)="updateFilteredEmojis()"/>
-          <button (click)="onClose()">Close</button>
+          </div>
+          <div class ="col col-lg-2">
+          <button (click)="onClose()" class="btn btn-danger pull-right" style="font-size:0.75vw">Close</button>
+          </div>
+          </div>
       </div>
       <div class="emojis-container">
         <span *ngFor="let emoji of filteredEmojis"
@@ -42,6 +49,7 @@ import { EmojiService } from '../emoji.service';
                title="{{emoji.aliases[0]}}">
           {{emoji.emoji}}
         </span>
+      </div>
       </div>
     </div>
     </div>
@@ -109,6 +117,9 @@ import { EmojiService } from '../emoji.service';
       }
       .container {
         width:50vw;
+      }
+      .sticky-emoji{
+            flex-shrink: 0;
       }
 
   `]
