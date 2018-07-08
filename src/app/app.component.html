@@ -3,17 +3,4 @@
 <div align="center">
 <app-headline-view></app-headline-view>
 </div>
-<div class="container">
-<div class = "col-12"style="max-width: 500px; margin-top:2%; margin-left:5%;">
-  <emoji-input [(model)]="text"
-               [inputClass]="'red'"
-               [searchClass]="'blue'"
-               [closeAfterSelection]="false"
-               style="display: inline-block;"
-               align="right">
-  </emoji-input>
-<!--   <button type="button" name="button"  style="display: inline-block;" (click)="openPopup()">
-    Click me :)
-  </button> -->
-</div>
-</div>
+<app-emoji-input (SubmittedEmoji)="onEmojiSubmit($event)"></app-emoji-input>

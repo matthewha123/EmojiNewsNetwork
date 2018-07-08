@@ -8,7 +8,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HlMovementComponent } from './hl-movement/hl-movement.component';
 import { HeadlineViewComponent } from './headline-view/headline-view.component';
 import { HlInfoComponent } from './hl-info/hl-info.component';
-import { EmojiPickerModule } from './emoji-picker/emoji-picker.module'
+import { EmojiPickerModule } from './emoji-picker/emoji-picker.module';
+import { EmojiInputComponent } from './emoji-input/emoji-input.component';
+import { TranslationComponent } from './translations/translation/translation.component'
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { EmojiPickerModule } from './emoji-picker/emoji-picker.module'
     HlMovementComponent,
     HeadlineViewComponent,
     HlInfoComponent,
+    EmojiInputComponent,
+    TranslationComponent,
   ],
   imports: [
     BrowserModule,

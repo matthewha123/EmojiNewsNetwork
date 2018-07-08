@@ -14,7 +14,7 @@ import { EmojiService } from '../emoji.service';
 @Component({
   selector: 'emoji-input',
   template: `
-    <div tabindex="-1" (blur)="onBigBlur($event)">
+    <div tabindex="-1" (blur)="onBigBlur($event)" style="width:40vw;">
       <input #inputEl type="text" class="form-control input-sm"
         (click)="onClick($event)"
         [ngClass]="[inputClass]"
@@ -93,7 +93,7 @@ import { EmojiService } from '../emoji.service';
         border-radius: 4px 4px 0 0;
         padding: 4px 8px;
         width: 100%;
-        width:50vw;
+        width:40vw;
       }
       :host .emoji-search .emojis-container {
         border-radius: 0 0 4px 4px;
@@ -105,7 +105,7 @@ import { EmojiService } from '../emoji.service';
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        width:50vw;
+        // width:50vw;
       }
       :host .emoji-search span {
         cursor: pointer;
@@ -116,10 +116,10 @@ import { EmojiService } from '../emoji.service';
         background-color: #ccc;
       }
       .container {
-        width:50vw;
+        // width:50vw;
       }
       .sticky-emoji{
-            flex-shrink: 0;
+        flex-shrink: 0;
       }
 
   `]

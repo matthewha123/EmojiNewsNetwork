@@ -7,11 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Emoji News Network';
-  text: string = '';
-  openPopup: Function;
-
-  setPopupAction(fn: any) {
-    console.log('setPopupAction');
-    this.openPopup = fn;
+  onEmojiSubmit(e) {
+    console.log(e);
   }
 }
