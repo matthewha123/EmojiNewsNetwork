@@ -14,7 +14,7 @@ import { EmojiService } from '../emoji.service';
 @Component({
   selector: 'emoji-input',
   template: `
-    <div tabindex="-1" (blur)="onBigBlur($event)" style="width:40vw;">
+    <div tabindex="-1" (blur)="onBigBlur($event)" style="width:60vw;">
       <input #inputEl type="text" class="form-control input-sm"
         (click)="onClick($event)"
         [ngClass]="[inputClass]"
@@ -93,7 +93,7 @@ import { EmojiService } from '../emoji.service';
         border-radius: 4px 4px 0 0;
         padding: 4px 8px;
         width: 100%;
-        width:40vw;
+        width:60vw;
       }
       :host .emoji-search .emojis-container {
         border-radius: 0 0 4px 4px;

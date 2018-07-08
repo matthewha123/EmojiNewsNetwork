@@ -3,5 +3,7 @@
 <div align="center">
 <app-headline-view #hl (headlineChange) = "onHeadLineChange($event)"></app-headline-view>
 </div>
+<div class = "container" style="margin-left:18%;">
 <app-emoji-input (SubmittedEmoji)="onEmojiSubmit($event)"></app-emoji-input>
 <app-translations-master [headline]="activeHeadLine.text"></app-translations-master>
+</div>
