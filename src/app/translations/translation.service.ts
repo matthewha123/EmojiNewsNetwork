@@ -18,4 +18,10 @@ export class TranslationService {
 // 	  	console.log("yo");
 // 	  	return DummyTranslations[hl];
 //   }
+
+	putTranslation(trans: Translation, hl:string): Observable<Translation[]> {
+		DummyTranslations[hl].push(trans);
+		console.log(DummyTranslations[hl]);
+		return of(DummyTranslations[hl]);
+	}
 }

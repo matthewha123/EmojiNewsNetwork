@@ -20,7 +20,6 @@ export class TranslationsMasterComponent implements OnInit {
   	this.getTranslations();
   }
 
-
   getTranslations() {
   	this.TS.getTranslations(this.headline)
   		.subscribe(translations => this.translations = translations);

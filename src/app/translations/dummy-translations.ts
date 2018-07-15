@@ -1,6 +1,6 @@
 import { Translation } from './translation'
 
-export const DummyTranslations = {
+export let DummyTranslations = {
 	property: "value",
 	"Children Increasingly Likely To Torture Squirrels following release of Alvin and the Chipmunk’s 4": [
 		new Translation("🐵 🙈 🙉 🙊 🐒", 9999, "matthew", "2018-07-08"),

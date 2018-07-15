@@ -3,7 +3,17 @@
 <div align="center">
 <app-headline-view #hl (headlineChange) = "onHeadLineChange($event)"></app-headline-view>
 </div>
-<div class = "container" style="margin-left:18%;">
+<div class = "container" style="margin-left:16%;">
 <app-emoji-input (SubmittedEmoji)="onEmojiSubmit($event)"></app-emoji-input>
+<div class = "row">
+	<div class = "col-1">
+	</div>
+	<div class = "col-10">
+		
 <app-translations-master [headline]="activeHeadLine.text"></app-translations-master>
+
+</div>
+	<div class ="col-1">
+		</div>
+</div>
 </div>
