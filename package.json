@@ -23,6 +23,7 @@
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
+    "express-generator": "^4.16.0",
     "font-awesome": "^4.7.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
