@@ -12,6 +12,7 @@ import { TranslationsMasterComponent } from './translations/translations-master/
 export class AppComponent {
   title = 'Emoji News Network';
   activeHeadLine: HeadLine;
+  hl_received = false;
 
   @ViewChild(TranslationsMasterComponent) tMaster;
 
@@ -20,11 +21,12 @@ export class AppComponent {
 
   onEmojiSubmit(e) {
     console.log(e);
-    this.TS.putTranslation(new Translation(e, 57, 'matthew', 'today'), this.activeHeadLine.text);
+    this.TS.putTranslation(new Translation(e, 57, 'matthew', 'today'), this.activeHeadLine.txt);
     this.tMaster.getTranslations();
   }
 
   onHeadLineChange(newHeadLine: HeadLine) {
+    this.hl_received = true;
     this.activeHeadLine=newHeadLine;
     console.log(newHeadLine);
   }

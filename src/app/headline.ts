@@ -1,5 +1,6 @@
 export class HeadLine {
-	text: string;
+	id: number;
+	txt: string;
 	publisher: string;
 	url: string;
 }

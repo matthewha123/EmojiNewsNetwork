@@ -19,13 +19,16 @@ export class HeadlineViewComponent implements OnInit {
 
   ngOnInit() {
   	this.getHeadlines();
-    this.headlinesIDX = 0;
-    this.headlineChange.emit(this.headlines[this.headlinesIDX]);
+
   }
 
   getHeadlines() {
-  	this.headlines = this.headlineService.getHeadlines();
-  	console.log(this.headlines);
+  	this.headlineService.getHeadlines()
+      .subscribe(headlines => {
+        this.headlines = headlines;
+        this.initializeHeadlines();
+        console.log(this.headlines);
+      });
   }
   forward() {
     this.headlinesIDX += 1;
@@ -40,5 +43,11 @@ export class HeadlineViewComponent implements OnInit {
         this.headlinesIDX = this.headlines.length - 1;
       }
       this.headlineChange.emit(this.headlines[this.headlinesIDX]);
+  }
+
+  initializeHeadlines() {
+    this.headlinesIDX = 0;
+    this.headlineChange.emit(this.headlines[this.headlinesIDX]);
+    console.log(this.headlines[this.headlinesIDX]);
   }
 }

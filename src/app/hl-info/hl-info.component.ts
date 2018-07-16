@@ -15,7 +15,6 @@ export class HlInfoComponent implements OnInit {
 
   ngOnInit() {
   	this.idx = 0;
-  	this.display = HEADLINES[this.idx]; //TODO make service to serve the headline
   }
 
   forward() {

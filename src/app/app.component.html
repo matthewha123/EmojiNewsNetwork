@@ -9,8 +9,10 @@
 	<div class = "col-1">
 	</div>
 	<div class = "col-10">
-		
-<app-translations-master [headline]="activeHeadLine.text"></app-translations-master>
+
+<div *ngIf = "hl_received">
+<app-translations-master [headline]="activeHeadLine.txt"></app-translations-master>
+</div>
 
 </div>
 	<div class ="col-1">
