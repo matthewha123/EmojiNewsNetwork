@@ -27,7 +27,6 @@ export class HeadlineViewComponent implements OnInit {
       .subscribe(headlines => {
         this.headlines = headlines;
         this.initializeHeadlines();
-        console.log(this.headlines);
       });
   }
   forward() {
@@ -48,6 +47,5 @@ export class HeadlineViewComponent implements OnInit {
   initializeHeadlines() {
     this.headlinesIDX = 0;
     this.headlineChange.emit(this.headlines[this.headlinesIDX]);
-    console.log(this.headlines[this.headlinesIDX]);
   }
 }

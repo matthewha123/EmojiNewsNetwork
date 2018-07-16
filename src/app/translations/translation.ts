@@ -1,5 +1,5 @@
 export class Translation {
-	text: string;
+	txt: string;
 	score: number;
 	user: string;
 	date: string;

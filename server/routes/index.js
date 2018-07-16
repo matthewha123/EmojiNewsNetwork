@@ -9,5 +9,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/api/enn/headlines', db.getHeadlines);
+router.post('/api/enn/translation', db.putTranslation);
 
 module.exports = router;
