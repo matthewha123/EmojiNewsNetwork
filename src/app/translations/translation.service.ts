@@ -7,7 +7,7 @@ import { Translation } from "./translation"
   providedIn: 'root'
 })
 export class TranslationService {
-
+  translationURL = 'http://localhost:3000//api/enn/translation'
   constructor() { }
 
   getTranslations(hl:string): Observable<Translation[]>{
@@ -19,9 +19,7 @@ export class TranslationService {
 // 	  	return DummyTranslations[hl];
 //   }
 
-	putTranslation(trans: Translation, hl:string): Observable<Translation[]> {
-		DummyTranslations[hl].push(trans);
-		console.log(DummyTranslations[hl]);
-		return of(DummyTranslations[hl]);
+	putTranslation(trans: Translation, hl:string): Observable<any> {
+		return
 	}
 }
