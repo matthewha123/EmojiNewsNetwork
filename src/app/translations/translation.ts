@@ -5,7 +5,7 @@ export class Translation {
 	date: string;
 
 	constructor(text: string, score: number, user: string, date: string) {
-		this.text = text;
+		this.txt = text;
 		this.score = score;
 		this.user = user;
 		this.date = date;

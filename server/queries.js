@@ -11,7 +11,8 @@ var db = pgp(connectionString);
 
 module.exports = {
 	getHeadlines: getHeadlines,
-	putTranslation: putTranslation
+	putTranslation: putTranslation,
+	putHeadlines: putHeadlines,
 	
 }
 
@@ -57,8 +58,25 @@ function putTranslation(req,res,next) {
 	.catch(error => {
 		return next(error);
 	});
+}
 
 
+function putHeadlines(articles) {
+	let first_hl = articles[0]['title'];
+	// db.task(t => {
+	// 	t.any('select 1 from headlines where txt = '+first_hl+" limit 1;")
+	// 		.then(function (data) {
+	// 			console.log('received before???', data);
+	// 			console.log(articles);
+	// 		});
+	// });
+
+	db.any("select * from headlines where txt = "+"'"+first_hl+"'")
+		.then(function(data) {
+			console.log('received data', data);
+		});
+	console.log('first headline', first_hl);
+}
 
 
 
@@ -81,4 +99,3 @@ function putTranslation(req,res,next) {
 	// 	status:'success',
 	// 	request: req.body
 	// })
-}
