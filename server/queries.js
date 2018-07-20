@@ -70,8 +70,8 @@ function putHeadlines(articles) {
 	// 			console.log(articles);
 	// 		});
 	// });
-
-	db.any("select * from headlines where txt = "+"'"+first_hl+"'")
+	let query = makePutHeadlinesSQLQuery(articles);
+	db.any(query)
 		.then(function(data) {
 			console.log('received data', data);
 		});
@@ -99,3 +99,57 @@ function putHeadlines(articles) {
 	// 	status:'success',
 	// 	request: req.body
 	// })
+
+//THIS IS THE SQL COMMAND TO SEND TO CHECK FOR MULTIPLE VALUES EXISTING
+// with data(first_name, last_name, uid)  as (
+//    values
+//       ( 'John', 'Doe', '3sldkjfksjd'),
+//       ( 'Jane', 'Doe', 'adslkejkdsjfds')
+// ) 
+// insert into users (first_name, last_name, uid) 
+// select d.first_name, d.last_name, d.uid
+// from data d
+// where not exists (select 1
+//                   from users u2
+//                   where u2.uid = d.uid);
+
+function makePutHeadlinesSQLQuery(articles) {
+	let query = "with data(txt, publisher, url) as ( values "
+
+	for(art of articles) {
+		console.log('object: ', art);
+		let txt = escapeQuotesForQuery(art['title']);
+		let pub = escapeQuotesForQuery(art['source']['name']);
+		let url = art['url'];
+		query += "( '"+txt+"', '"+pub+"', '"+url+"'"+")," 
+	}
+	query = query.slice(0,-1);
+	// console.log('query after values: ', query);
+	query += ")";
+
+	query += " insert into headlines (txt, publisher, url) select d.txt, d.publisher, d.url from data d where not exists (select 1 from headlines entry where entry.txt = d.txt);"
+
+	console.log("final query: ", query);
+	return query;
+}
+
+function escapeQuotesForQuery(str) {
+	// let strChunks = [];
+	// let strChunk = "";
+	// for (var i = 0; i<str.length; i++) {
+	// 	strChunk += str[i];
+	// 	if ((str[i])==="'") {
+	// 		strChunks.push(strChunk);
+	// 		strChunk="";
+	// 		console.log("string chunks: ",strChunks)
+	// 	}
+	// }
+	// if(strChunks.)
+	// let replacementString = strChunks.join("'");
+	// if(strChunk != "") strChunks.push(strChunk);
+	// console.log("replacementString! ", replacementString);
+	let strChunks = str.split("'");
+	let replString = strChunks.join("''");
+	console.log("replacement String:", replString);
+	return replString;
+}
