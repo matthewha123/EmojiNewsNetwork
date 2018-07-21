@@ -24,6 +24,7 @@ export class AppComponent {
     this.TS.putTranslation(new Translation(-1, e, 0, 'matthew', 'today'), this.activeHeadLine.id)
       .subscribe(trans => {
         console.log("Translation just sent was: ", trans);
+        this.tMaster.getTranslations();
       });
     // this.tMaster.getTranslations();
   }

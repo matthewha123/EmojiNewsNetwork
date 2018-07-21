@@ -13,6 +13,8 @@ module.exports = {
 	getHeadlines: getHeadlines,
 	putTranslation: putTranslation,
 	putHeadlines: putHeadlines,
+	getTranslations: getTranslations,
+	getSingleTranslation: getSingleTranslation
 	
 }
 
@@ -60,6 +62,27 @@ function putTranslation(req,res,next) {
 	.catch(error => {
 		return next(error);
 	});
+}
+
+function getTranslations(req,res,next) {
+	let hl_id = parseInt(req.params.hlID);
+	console.log('getting translations from headline id:', hl_id);
+	db.any('select * from num'+hl_id)
+		.then(function (data) {
+			res.status(200)
+				.json({
+					'status': 'success',
+					'translations': data,
+					'message': 'retrieved translations for headline '+hl_id
+				})
+			.catch(function (err) {
+				return next(err);
+			})
+		})
+}
+
+function getSingleTranslation(req,res,next){
+
 }
 
 

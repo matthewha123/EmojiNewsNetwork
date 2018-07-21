@@ -19,9 +19,12 @@ export class TranslationService {
   translationURL = 'http://localhost:3000/api/enn/translation'
   constructor(private http: HttpClient) { }
 
-  getTranslations(hl:string): Observable<Translation[]>{
-  	console.log("getting translations for: ", hl,"From DUmmy: ", DummyTranslations);
-  	return of(DummyTranslations[hl]);
+  getTranslations(hl_id:number): Observable<any>{
+    console.log("getting translations!");
+  	return this.http.get(this.translationURL+'/'+hl_id)
+      .pipe(
+            retry(3),
+           catchError(this.handleError))
   }
 //     getTranslations(hl:string): Translation[]{
 // 	  	console.log("yo");

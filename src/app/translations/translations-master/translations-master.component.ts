@@ -9,7 +9,7 @@ import { Translation } from '../translation';
 })
 export class TranslationsMasterComponent implements OnInit {
 
-	@Input() headline: string;
+	@Input() headline: object;
 	translations: Translation[];
   constructor(private TS: TranslationService) { }
 
@@ -17,17 +17,19 @@ export class TranslationsMasterComponent implements OnInit {
   	this.getTranslations();
   }
   ngOnChanges() {
-    console.log("Current Headline In TranslationMaster Is: ", this.headline);
+    console.log("Current Headline In TranslationMaster Is: ", this.headline['txt']);
   	this.getTranslations();
   }
 
   getTranslations() {
-  	this.TS.getTranslations(this.headline)
-  		.subscribe(translations => {
-        this.translations = translations;
-        console.log("Translations gotten from headline: ", this.translations);
-      });
-  	// this.translations=this.TS.getTranslations(this.headline);
-  	// console.log(this.translations);
+  	// this.TS.getTranslations(this.headline)
+  	// 	.subscribe(translations => {
+   //      this.translations = translations;
+   //      console.log("Translations gotten from headline: ", this.translations);
+   //    });
+   this.TS.getTranslations(this.headline['id'])
+     .subscribe(response => {
+       this.translations = response["translations"];
+     })
   }
 }
