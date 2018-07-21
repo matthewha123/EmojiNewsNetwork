@@ -1,13 +1,15 @@
 export class Translation {
+	id: number;
 	txt: string;
 	score: number;
-	user: string;
+	usr: string;
 	date: string;
 
-	constructor(text: string, score: number, user: string, date: string) {
+	constructor(id: number, text: string, score: number, user: string, date: string) {
+		this.id = id;
 		this.txt = text;
 		this.score = score;
-		this.user = user;
+		this.usr = user;
 		this.date = date;
 	}
 }

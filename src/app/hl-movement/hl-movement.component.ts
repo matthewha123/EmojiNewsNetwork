@@ -15,10 +15,10 @@ export class HlMovementComponent implements OnInit {
   }
 
   backward() {
-  	console.log("BACKWARD!!!");
+  	// console.log("BACKWARD!!!");
   }
   forward() {
-  	console.log("FOWARD!!!!");
+  	// console.log("FOWARD!!!!");
   }
 
 }

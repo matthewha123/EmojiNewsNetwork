@@ -13,6 +13,7 @@ export class TranslationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  	console.log("received following translation:: ", this.translation);
   }
 
 }

@@ -18,7 +18,7 @@ export class HlInfoComponent implements OnInit {
   }
 
   forward() {
-  	console.log("moving forward");
+  	// console.log("moving forward");
   	this.idx += 1;
   	if (this.idx >= HEADLINES.length) {
   		this.idx = 0;
@@ -31,7 +31,7 @@ export class HlInfoComponent implements OnInit {
   		this.idx = HEADLINES.length - 1;
   	}
   	this.display = HEADLINES[this.idx];
-  	console.log("moving backward");
+  	// console.log("moving backward");
   }
 
 

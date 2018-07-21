@@ -17,12 +17,16 @@ export class TranslationsMasterComponent implements OnInit {
   	this.getTranslations();
   }
   ngOnChanges() {
+    console.log("Current Headline In TranslationMaster Is: ", this.headline);
   	this.getTranslations();
   }
 
   getTranslations() {
   	this.TS.getTranslations(this.headline)
-  		.subscribe(translations => this.translations = translations);
+  		.subscribe(translations => {
+        this.translations = translations;
+        console.log("Translations gotten from headline: ", this.translations);
+      });
   	// this.translations=this.TS.getTranslations(this.headline);
   	// console.log(this.translations);
   }

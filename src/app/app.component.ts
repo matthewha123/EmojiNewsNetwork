@@ -21,13 +21,16 @@ export class AppComponent {
 
   onEmojiSubmit(e) {
     console.log(e);
-    this.TS.putTranslation(new Translation(e, 57, 'matthew', 'today'), this.activeHeadLine.txt);
-    this.tMaster.getTranslations();
+    this.TS.putTranslation(new Translation(-1, e, 0, 'matthew', 'today'), this.activeHeadLine.id)
+      .subscribe(trans => {
+        console.log("Translation just sent was: ", trans);
+      });
+    // this.tMaster.getTranslations();
   }
 
   onHeadLineChange(newHeadLine: HeadLine) {
     this.hl_received = true;
     this.activeHeadLine=newHeadLine;
-    console.log(newHeadLine);
+    // console.log(newHeadLine);
   }
 }

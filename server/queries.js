@@ -16,7 +16,7 @@ module.exports = {
 	
 }
 
-var translation_params = "(txt TEXT, usr TEXT, score INTEGER, date TEXT)"
+var translation_params = "(ID SERIAL PRIMARY KEY, txt TEXT, usr TEXT, score INTEGER, date TEXT)"
 
 function getHeadlines(req,res,next) {
 	db.any('select * from headlines')
@@ -34,17 +34,19 @@ function getHeadlines(req,res,next) {
 }
 
 function putTranslation(req,res,next) {
-	let db_name = parseInt(req.body['id'])
+	let db_name = parseInt(req.body['hl_id'])
 	// let translation = req.body['trans']
 	// let user = req.body['user']
 	// let score = req.body['score']
 	// let date = req.body['date']
-
+	console.log("req body: ", req.body);
 	db.task(t => {
-		return t.none('CREATE TABLE IF NOT EXISTS num'+db_name+translation_params)
+		console.log("Creating table if necessary: num", db_name);
+		return t.none('CREATE TABLE IF NOT EXISTS num'+db_name+" "+translation_params)
 			.then( () => {
+				console.log("after creating table");
 				return t.none('insert into num'+db_name+' (txt, usr, score, date)'+
-					'values(${translation}, ${usr}, ${score},${date})', req.body);
+					'values(${txt}, ${usr}, ${score},${date})', req.body);
 			});
 	})
 	.then(events => {
