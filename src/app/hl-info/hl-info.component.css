@@ -1,11 +1,11 @@
 .info {
 
-  position: absolute;
+/*  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 30vw;
-  height:auto;
+  height:auto;*/
 }
 .text {
 	font-size: 2vw;

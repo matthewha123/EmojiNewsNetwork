@@ -1,9 +1,10 @@
 <!-- Top Nav Bar that should be its own component-->
 <app-navbar></app-navbar>
+<div class = "container">
 <div align="center">
 <app-headline-view #hl (headlineChange) = "onHeadLineChange($event)"></app-headline-view>
 </div>
-<div class = "container" style="margin-left:16%;">
+<div class = "row">
 <app-emoji-input (SubmittedEmoji)="onEmojiSubmit($event)"></app-emoji-input>
 <div class = "row">
 	<div class = "col-1">
@@ -17,5 +18,6 @@
 </div>
 	<div class ="col-1">
 		</div>
+</div>
 </div>
 </div>

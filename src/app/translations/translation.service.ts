@@ -20,6 +20,6 @@ export class TranslationService {
 //   }
 
 	putTranslation(trans: Translation, hl:string): Observable<any> {
-		return
+		return;
 	}
 }
