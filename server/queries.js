@@ -18,7 +18,7 @@ module.exports = {
 	
 }
 
-var translation_params = "(ID SERIAL PRIMARY KEY, txt TEXT, usr TEXT, score INTEGER, date TEXT)"
+var translation_params = "(ID SERIAL PRIMARY KEY, txt TEXT, usr TEXT, score INTEGER, date timestamp with time zone)"
 
 function getHeadlines(req,res,next) {
 	db.any('select * from headlines')
@@ -48,7 +48,7 @@ function putTranslation(req,res,next) {
 			.then( () => {
 				console.log("after creating table");
 				return t.none('insert into num'+db_name+' (txt, usr, score, date)'+
-					'values(${txt}, ${usr}, ${score},${date})', req.body);
+					'values(${txt}, ${usr}, ${score}, now())', req.body);
 			});
 	})
 	.then(events => {
@@ -74,11 +74,11 @@ function getTranslations(req,res,next) {
 					'status': 'success',
 					'translations': data,
 					'message': 'retrieved translations for headline '+hl_id
-				})
+				});
+		})
 			.catch(function (err) {
 				return next(err);
 			})
-		})
 }
 
 function getSingleTranslation(req,res,next){
