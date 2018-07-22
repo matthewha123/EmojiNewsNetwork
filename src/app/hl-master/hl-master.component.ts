@@ -1,8 +1,10 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Input } from '@angular/core';
 import { HeadLine } from '../headline';
 import { Translation } from '../translations/translation';
 import { TranslationService } from '../translations/translation.service';
 import { TranslationsMasterComponent } from '../translations/translations-master/translations-master.component';
+import { ActivatedRoute } from '@angular/router';
+import { HeadlineService } from '../headline.service';
 
 @Component({
   selector: 'app-hl-master',
@@ -13,12 +15,18 @@ export class HlMasterComponent implements OnInit {
   title = 'Emoji News Network';
   activeHeadLine: HeadLine;
   hl_received = false;
+  headlines: HeadLine[];
 
   @ViewChild(TranslationsMasterComponent) tMaster;
 
-  constructor(private TS: TranslationService) { }
+  hl_toDisplayID: number;
+
+  constructor(private TS: TranslationService, private route: ActivatedRoute, private HS: HeadlineService) { 
+  	this.hl_toDisplayID = +this.route.snapshot.paramMap.get('id');
+  }
 
   ngOnInit() {
+  	this.getHeadlines();
   }
 
   onEmojiSubmit(e) {
@@ -36,5 +44,12 @@ export class HlMasterComponent implements OnInit {
     this.activeHeadLine=newHeadLine;
     // console.log(newHeadLine);
   }
+    getHeadlines() {
+  	this.HS.getHeadlines()
+      .subscribe(headlines => {
+        this.headlines = headlines;
+      });
+}
 
 }
+

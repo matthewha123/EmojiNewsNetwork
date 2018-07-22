@@ -12,7 +12,8 @@ import { EmojiPickerModule } from './emoji-picker/emoji-picker.module';
 import { EmojiInputComponent } from './emoji-input/emoji-input.component';
 import { TranslationComponent } from './translations/translation/translation.component';
 import { TranslationsMasterComponent } from './translations/translations-master/translations-master.component';
-import { HlMasterComponent } from './hl-master/hl-master.component'
+import { HlMasterComponent } from './hl-master/hl-master.component';
+import { AppRoutingModule } from './/app-routing.module'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HlMasterComponent } from './hl-master/hl-master.component'
     BrowserModule,
     HttpClientModule,
     AngularFontAwesomeModule,
-    EmojiPickerModule
+    EmojiPickerModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

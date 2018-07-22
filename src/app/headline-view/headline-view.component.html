@@ -3,8 +3,8 @@
 	<app-hl-movement [dir]="'left'" (click)="backward()" align = "center"></app-hl-movement>
 	</div>
 	<div class="col-8" position = "relative">
-		<div *ngIf = "headlines">
-      <app-hl-info [display]="headlines[headlinesIDX]" #info></app-hl-info>
+		<div *ngIf = "headline">
+      <app-hl-info [display]="headline" #info></app-hl-info>
   </div>
     </div>
 	<div class = "col">

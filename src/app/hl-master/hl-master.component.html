@@ -1,6 +1,8 @@
+<div *ngIf = "headlines">
 <div class = "container">
 <div align="center">
-<app-headline-view #hl (headlineChange) = "onHeadLineChange($event)"></app-headline-view>
+	
+<app-headline-view #hl (headlineChange) = "onHeadLineChange($event)" [headline]="headlines[hl_toDisplayID]"></app-headline-view>
 </div>
 <div class = "row">
 <app-emoji-input (SubmittedEmoji)="onEmojiSubmit($event)"></app-emoji-input>
@@ -19,3 +21,7 @@
 </div>
 </div>
 </div>
+</div>
+
+<!-- <p>{{headlines | json}}</p> -->
+<p>{{headlines[hl_toDisplayID]}}</p>
