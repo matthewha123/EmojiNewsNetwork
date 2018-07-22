@@ -13,6 +13,8 @@ export class HeadlineViewComponent implements OnInit {
   @Output() headlineChange = new EventEmitter<HeadLine>();
 
  @Input()  headline: HeadLine;
+ @Input() backID: number;
+ @Input() forwardID: number;
 
   constructor(private headlineService: HeadlineService) { }
 
@@ -23,6 +25,7 @@ export class HeadlineViewComponent implements OnInit {
 
   }
   backward() {
+    console.log("back id: ", this.backID);
 
   }
 }

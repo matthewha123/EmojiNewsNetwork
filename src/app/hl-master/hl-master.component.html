@@ -1,8 +1,7 @@
 <div *ngIf = "headlines">
 <div class = "container">
 <div align="center">
-	
-<app-headline-view #hl (headlineChange) = "onHeadLineChange($event)" [headline]="headlines[hl_toDisplayID]"></app-headline-view>
+<app-headline-view #hl [headline]="headlines[hl_toDisplayID]" [backID]= "backID" [forwardID]="forwardID"></app-headline-view>
 </div>
 <div class = "row">
 <app-emoji-input (SubmittedEmoji)="onEmojiSubmit($event)"></app-emoji-input>
@@ -12,7 +11,7 @@
 	<div class = "col-10">
 
 <div *ngIf = "hl_received">
-<app-translations-master [headline]="activeHeadLine"></app-translations-master>
+<app-translations-master [headline]="headlines[hl_toDisplayID]"></app-translations-master>
 </div>
 
 </div>
@@ -24,4 +23,3 @@
 </div>
 
 <!-- <p>{{headlines | json}}</p> -->
-<p>{{headlines[hl_toDisplayID]}}</p>

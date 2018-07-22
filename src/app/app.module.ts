@@ -14,6 +14,8 @@ import { TranslationComponent } from './translations/translation/translation.com
 import { TranslationsMasterComponent } from './translations/translations-master/translations-master.component';
 import { HlMasterComponent } from './hl-master/hl-master.component';
 import { AppRoutingModule } from './/app-routing.module'
+import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { AppRoutingModule } from './/app-routing.module'
     TranslationComponent,
     TranslationsMasterComponent,
     HlMasterComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
