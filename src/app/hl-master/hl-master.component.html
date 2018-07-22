@@ -1,0 +1,21 @@
+<div class = "container">
+<div align="center">
+<app-headline-view #hl (headlineChange) = "onHeadLineChange($event)"></app-headline-view>
+</div>
+<div class = "row">
+<app-emoji-input (SubmittedEmoji)="onEmojiSubmit($event)"></app-emoji-input>
+<div class = "row">
+	<div class = "col-1">
+	</div>
+	<div class = "col-10">
+
+<div *ngIf = "hl_received">
+<app-translations-master [headline]="activeHeadLine"></app-translations-master>
+</div>
+
+</div>
+	<div class ="col-1">
+		</div>
+</div>
+</div>
+</div>

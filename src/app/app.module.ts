@@ -11,7 +11,8 @@ import { HlInfoComponent } from './hl-info/hl-info.component';
 import { EmojiPickerModule } from './emoji-picker/emoji-picker.module';
 import { EmojiInputComponent } from './emoji-input/emoji-input.component';
 import { TranslationComponent } from './translations/translation/translation.component';
-import { TranslationsMasterComponent } from './translations/translations-master/translations-master.component'
+import { TranslationsMasterComponent } from './translations/translations-master/translations-master.component';
+import { HlMasterComponent } from './hl-master/hl-master.component'
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TranslationsMasterComponent } from './translations/translations-master/
     EmojiInputComponent,
     TranslationComponent,
     TranslationsMasterComponent,
+    HlMasterComponent,
   ],
   imports: [
     BrowserModule,
