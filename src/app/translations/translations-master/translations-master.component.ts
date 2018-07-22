@@ -29,6 +29,7 @@ export class TranslationsMasterComponent implements OnInit {
    //    });
    this.TS.getTranslations(this.headline['id'])
      .subscribe(response => {
+       console.log('getting translation response: ', response);
        this.translations = response["translations"];
      })
   }

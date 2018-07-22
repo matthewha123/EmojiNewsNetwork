@@ -49,6 +49,9 @@ function putTranslation(req,res,next) {
 				console.log("after creating table");
 				return t.none('insert into num'+db_name+' (txt, usr, score, date)'+
 					'values(${txt}, ${usr}, ${score}, now())', req.body);
+			})
+			.catch(error => {
+				return next(error);
 			});
 	})
 	.then(events => {
@@ -67,18 +70,40 @@ function putTranslation(req,res,next) {
 function getTranslations(req,res,next) {
 	let hl_id = parseInt(req.params.hlID);
 	console.log('getting translations from headline id:', hl_id);
-	db.any('select * from num'+hl_id)
-		.then(function (data) {
-			res.status(200)
-				.json({
-					'status': 'success',
-					'translations': data,
-					'message': 'retrieved translations for headline '+hl_id
-				});
-		})
+	let qq = "SELECT to_regclass('enn.num"+hl_id+"'"+");";
+
+	db.task(t => {
+		return t.any("SELECT relname FROM pg_class WHERE relname = 'num"+hl_id+"';")
+			.then( (data) => {
+				if(data.length != 0) {
+					return t.any('select * from num'+hl_id)
+							.then(function (data) {
+								res.status(200)
+									.json({
+										'status': 'success',
+										'translations': data,
+										'message': 'retrieved translations for headline '+hl_id
+									});
+							})
+								.catch(function (err) {
+									return next(err);
+								})
+				}
+				else {
+					res.status(200)
+						.json({
+							'status': 'sucess',
+							'translations': [],
+							'message': 'no translations!'
+						});
+				}
+			})
 			.catch(function (err) {
 				return next(err);
 			})
+	})
+
+
 }
 
 function getSingleTranslation(req,res,next){
@@ -177,4 +202,16 @@ function escapeQuotesForQuery(str) {
 	let replString = strChunks.join("''");
 	console.log("replacement String:", replString);
 	return replString;
+}
+
+function createTranslationDB(db_name) {
+	t.none('CREATE TABLE IF NOT EXISTS num'+db_name+" "+translation_params)
+			.then( () => {
+				console.log("after creating table");
+				return t.none('insert into num'+db_name+' (txt, usr, score, date)'+
+					'values(${txt}, ${usr}, ${score}, now())', req.body);
+			})
+			.catch(error => {
+				return next(error);
+			});
 }
