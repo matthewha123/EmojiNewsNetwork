@@ -20,6 +20,7 @@ router.get('/api/enn/headlines', db.getHeadlines);
 router.post('/api/enn/translation', db.putTranslation);
 router.get('/api/enn/translation/:hlID', db.getTranslations);
 router.get('/api/enn/translation/:hlID/:id', db.getSingleTranslation);
+router.post('/api/enn/translation/vote', db.vote);
 
 
 module.exports = router;

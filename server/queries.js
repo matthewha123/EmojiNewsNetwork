@@ -14,7 +14,8 @@ module.exports = {
 	putTranslation: putTranslation,
 	putHeadlines: putHeadlines,
 	getTranslations: getTranslations,
-	getSingleTranslation: getSingleTranslation
+	getSingleTranslation: getSingleTranslation,
+	vote: vote
 	
 }
 
@@ -214,4 +215,25 @@ function createTranslationDB(db_name) {
 			.catch(error => {
 				return next(error);
 			});
+}
+
+function vote(req,res,next) {
+	let mod = parseInt(req.body['modifier']);
+	let modifier = (mod === 1) ? "+ 1" : "- 1";
+	let db_name = 'num'+parseInt(req.body['hl_id']);
+	let trans_id = parseInt(req.body['trans_id']);
+	let query = "UPDATE "+db_name+" SET score = score "+modiefier+" WHERE ID = "+trans_id;
+
+
+	db.none(query)
+		.then(() => {
+			res.status(200)
+			.json({
+				status: 'success',
+				message: 'increased translation '+trans_id+" of headline "+hl_id+" by "+modifier
+			})
+		})
+		.catch((err) => {
+			return next(err);
+		})
 }
