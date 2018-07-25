@@ -22,7 +22,7 @@ module.exports = {
 var translation_params = "(ID SERIAL PRIMARY KEY, txt TEXT, usr TEXT, score INTEGER, date timestamp with time zone)"
 
 function getHeadlines(req,res,next) {
-	db.any('select * from headlines')
+	db.any('select * from headlines ORDER BY ID DESC LIMIT 5')
 		.then(function (data) {
 			res.status(200)
 				.json({

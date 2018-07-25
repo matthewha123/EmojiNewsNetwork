@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
-import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
-  constructor(@Inject(SESSION_STORAGE) private localStorage: StorageService) { }
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: StorageService) { }
 
 
   set(key:string, val:string) {

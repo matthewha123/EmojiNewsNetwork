@@ -5,7 +5,6 @@ import { HlMasterComponent } from './hl-master/hl-master.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component'
 
 const routes: Routes = [
-	{path: '', redirectTo: 'headline/0', pathMatch: "full"},
 	{path: 'headline/:id', component: HlMasterComponent },
 	{path: '**', component: PageNotFoundComponent }
 

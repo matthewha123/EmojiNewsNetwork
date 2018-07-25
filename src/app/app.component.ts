@@ -4,6 +4,7 @@ import { Translation } from './translations/translation';
 import { TranslationService } from './translations/translation.service';
 import { TranslationsMasterComponent } from './translations/translations-master/translations-master.component';
 import { HeadlineService } from './headline.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,35 +16,19 @@ export class AppComponent implements OnInit{
   activeHeadLine: HeadLine;
   hl_received = false;
   headlines: HeadLine[];
+  headlineIDS = new Set();
 
   @ViewChild(TranslationsMasterComponent) tMaster;
 
 
-  constructor(private TS: TranslationService, private HS: HeadlineService) {}
+  constructor(private TS: TranslationService, private HS: HeadlineService, private router: Router) {}
   ngOnInit() {
     console.log("yolo");
-    this.getHeadlines();
-  }
-  onEmojiSubmit(e) {
-    console.log(e);
-    this.TS.putTranslation(new Translation(-1, e, 0, 'matthew', 'today'), this.activeHeadLine.id)
-      .subscribe(trans => {
-        console.log("Translation just sent was: ", trans);
-        this.tMaster.getTranslations();
-      });
-    // this.tMaster.getTranslations();
+    this.HS.InternalGetHeadlines();
+    this.HS.landingID.subscribe(id => {
+      this.router.navigate(["/headline", id]);
+    })
   }
 
-  onHeadLineChange(newHeadLine: HeadLine) {
-    this.hl_received = true;
-    this.activeHeadLine=newHeadLine;
-    // console.log(newHeadLine);
-  }
 
-  getHeadlines() {
-    this.HS.getHeadlines()
-      .subscribe(headlines => {
-        this.headlines = headlines;
-      });
-  }
 }

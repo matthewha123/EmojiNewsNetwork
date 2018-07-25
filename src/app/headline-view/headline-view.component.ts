@@ -9,9 +9,6 @@ import { HlMovementComponent } from '../hl-movement/hl-movement.component'
   styleUrls: ['./headline-view.component.css']
 })
 export class HeadlineViewComponent implements OnInit {
-
-  @Output() headlineChange = new EventEmitter<HeadLine>();
-
  @Input()  headline: HeadLine;
  @Input() backID: number;
  @Input() forwardID: number;
@@ -25,7 +22,7 @@ export class HeadlineViewComponent implements OnInit {
 
   }
   backward() {
-    console.log("back id: ", this.backID);
 
   }
+
 }
