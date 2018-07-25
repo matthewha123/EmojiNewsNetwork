@@ -218,19 +218,26 @@ function createTranslationDB(db_name) {
 }
 
 function vote(req,res,next) {
+	console.log(req.body);
 	let mod = parseInt(req.body['modifier']);
+	console.log("after mod");
 	let modifier = (mod === 1) ? "+ 1" : "- 1";
+	console.log("after modifier", modifier);
 	let db_name = 'num'+parseInt(req.body['hl_id']);
+	console.log("after db_name", db_name);
 	let trans_id = parseInt(req.body['trans_id']);
-	let query = "UPDATE "+db_name+" SET score = score "+modiefier+" WHERE ID = "+trans_id;
+	console.log("after trans_id ", trans_id);
+	let query = "UPDATE "+db_name+" SET score = score "+modifier+" WHERE ID = "+trans_id;
 
+	console.log("voting with params:: ", modifier, db_name, trans_id);
 
 	db.none(query)
 		.then(() => {
+			console.log("done the query:: ", query);
 			res.status(200)
 			.json({
 				status: 'success',
-				message: 'increased translation '+trans_id+" of headline "+hl_id+" by "+modifier
+				message: 'query: '+query
 			})
 		})
 		.catch((err) => {

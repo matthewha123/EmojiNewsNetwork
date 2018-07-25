@@ -1,7 +1,7 @@
 <div *ngFor="let translation of translations">
 	<div class = "row" style ="width:60vw">
 		<div class = "col">
-	<app-translation [translation]="translation"></app-translation>
+	<app-translation [translation]="translation" (vote)=onVote($event) [hl_id]="headline['id']"></app-translation>
 <hr />
 </div>
 </div>

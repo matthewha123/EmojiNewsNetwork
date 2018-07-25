@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { StorageServiceModule } from 'angular-webstorage-service';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -35,7 +37,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpClientModule,
     AngularFontAwesomeModule,
     EmojiPickerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StorageServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
