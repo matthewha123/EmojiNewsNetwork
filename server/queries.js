@@ -11,6 +11,7 @@ var db = pgp(connectionString);
 
 module.exports = {
 	getHeadlines: getHeadlines,
+	getHeadline: getHeadline,
 	putTranslation: putTranslation,
 	putHeadlines: putHeadlines,
 	getTranslations: getTranslations,
@@ -35,6 +36,20 @@ function getHeadlines(req,res,next) {
 			return next(err);
 		})
 }
+
+function getHeadline(req,res,next) {
+	let hl_id = req.params['id'];
+	db.one('select * from headlines where ID = '+hl_id)
+		.then((data) => {
+			res.status(200)
+				.json({
+					status: 'success',
+					data:data,
+					message: 'Retrieved single headline id: '+hl_id
+				})
+		})
+}
+
 
 function putTranslation(req,res,next) {
 	let db_name = parseInt(req.body['hl_id'])

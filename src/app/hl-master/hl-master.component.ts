@@ -51,7 +51,7 @@ export class HlMasterComponent implements OnInit {
   		 }
   		 else {
   		 	console.log("get this shit", this.hl_toDisplayID);
-        // this.HS.InternalGetMissingHeadline(this.hl_toDisplayID);
+        this.HS.InternalGetMissingHeadline(this.hl_toDisplayID);
         // this.HS.InternalGetHeadlines();
         // this.hl_toDisplayID = undefined;
   		 }
