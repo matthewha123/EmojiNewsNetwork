@@ -4,7 +4,7 @@ import { Translation } from './translations/translation';
 import { TranslationService } from './translations/translation.service';
 import { TranslationsMasterComponent } from './translations/translations-master/translations-master.component';
 import { HeadlineService } from './headline.service';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +21,9 @@ export class AppComponent implements OnInit{
   @ViewChild(TranslationsMasterComponent) tMaster;
 
 
-  constructor(private TS: TranslationService, private HS: HeadlineService, private router: Router) {}
+  constructor(private TS: TranslationService, private HS: HeadlineService, private router: Router, private route: ActivatedRoute ) {}
   ngOnInit() {
-    console.log("yolo");
-    this.HS.InternalGetHeadlines();
-    this.HS.landingID.subscribe(id => {
-      this.router.navigate(["/headline", id]);
-    })
+    this.HS.InternalGetHeadlines(true);
   }
 
 

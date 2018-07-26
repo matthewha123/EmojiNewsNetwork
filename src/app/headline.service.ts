@@ -32,6 +32,20 @@ export class HeadlineService {
       }));
   }
 
+  private getMissingHeadline(id:number): Observable<HeadLine>{
+
+    return this.http.get<HeadLine>(this.headlinesURL+'/'+id)
+    .pipe(
+          retry(3),
+         catchError(this.handleError)).pipe(
+      map((res) => {
+          if(res['status'] == 'success') {
+            return res['data'];
+          }
+      }));
+  }
+
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occured:', error.error.message);
@@ -44,7 +58,8 @@ export class HeadlineService {
     return throwError('something fucked up');
   }
 
-  InternalGetHeadlines() {
+
+  InternalGetHeadlines(navigateFromHome?: boolean) {
     this.getHeadlines().subscribe( (headlines) => {
           let emitID = false;
           if(this.headlineOrdering.length === 0) emitID = true;
@@ -52,7 +67,7 @@ export class HeadlineService {
             this.headlineOrdering.push(hl['id']);
             this.headlineIDMapping[hl['id'].toString()] = hl;
         }
-        if(emitID) this.landingID.next(this.headlineOrdering[0]);
+        if(emitID && navigateFromHome) this.landingID.next(this.headlineOrdering[0]);
     });
   }
 
@@ -60,8 +75,15 @@ export class HeadlineService {
     return this.headlineIDMapping[id];
   }
 
+  InternalGetMissingHeadline(id:number) {
+    this.getMissingHeadline(id).subscribe( (hl) => {
+      this.headlineOrdering.push(hl['id']);
+      this.headlineIDMapping[hl['id'].toString()] = hl;
+    })
+  }
+
   IsHeadlineLoaded(id:number) {
-    console.log("ID MAPPING ",this.headlineIDMapping);
+    if(!id) return false;
     return this.headlineIDMapping.hasOwnProperty(id.toString());
   }
 

@@ -17,27 +17,43 @@ export class HlMasterComponent implements OnInit {
   @ViewChild(TranslationsMasterComponent) tMaster;
 
   hl_toDisplayID: number;
-  backID: number;
-  forwardID: number;
-  headline: HeadLine;
+  // backID: number;
+  // forwardID: number;
+  // headline: HeadLine;
 
   constructor(private TS: TranslationService, private route: ActivatedRoute, private HS: HeadlineService) { 
   	this.hl_toDisplayID = +this.route.snapshot.paramMap.get('id');
+  }
+
+  get headline() {
+    if(this.HS.IsHeadlineLoaded(this.hl_toDisplayID)) return this.HS.InternalGetHeadline(this.hl_toDisplayID);
+    else return undefined;
+  }
+
+  get backID() {
+    if(this.headline) return this.HS.getAdjacentIDs(this.hl_toDisplayID)['back'];
+    else return undefined;
+  }
+  get forwardID() {
+    if(this.headline) return this.HS.getAdjacentIDs(this.hl_toDisplayID)['forward'];
+    else return undefined;
   }
 
   ngOnInit() {
   	this.route.paramMap.subscribe(() => {
   		 this.hl_toDisplayID = +this.route.snapshot.paramMap.get('id');
   		 if(this.HS.IsHeadlineLoaded(this.hl_toDisplayID)) {
-  		 	this.headline = this.HS.InternalGetHeadline(this.hl_toDisplayID);
-  		 	let ids = this.HS.getAdjacentIDs(this.hl_toDisplayID);
-  		 	this.backID = ids['back'];
-  		 	this.forwardID = ids['forward'];
+  		 	// this.headline = this.HS.InternalGetHeadline(this.hl_toDisplayID);
+  		 	// let ids = this.HS.getAdjacentIDs(this.hl_toDisplayID);
+  		 	// this.backID = ids['back'];
+  		 	// this.forwardID = ids['forward'];
   		 	console.log(this.headline);
   		 }
   		 else {
   		 	console.log("get this shit", this.hl_toDisplayID);
-  		 	this.hl_toDisplayID = undefined;
+        // this.HS.InternalGetMissingHeadline(this.hl_toDisplayID);
+        // this.HS.InternalGetHeadlines();
+        // this.hl_toDisplayID = undefined;
   		 }
   		 // this.getHeadlines();
   	});

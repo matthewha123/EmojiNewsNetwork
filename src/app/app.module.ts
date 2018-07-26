@@ -18,6 +18,7 @@ import { HlMasterComponent } from './hl-master/hl-master.component';
 import { AppRoutingModule } from './/app-routing.module'
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     TranslationsMasterComponent,
     HlMasterComponent,
     PageNotFoundComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
