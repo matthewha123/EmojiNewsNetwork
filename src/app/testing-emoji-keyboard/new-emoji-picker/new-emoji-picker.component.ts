@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-new-emoji-picker',
   templateUrl: './new-emoji-picker.component.html',

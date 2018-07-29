@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs">
+<ul class="nav nav-bar">
 	<li class = "nav-item">
 		<a class="nav-link" [ngClass]="{'active': selected_nav == 0}"  #people (click)="onNavClick(people,'people', 0)"><i class="fa fa-smile-o emoji-nav-icon" aria-hidden="true"></i></a>
 	</li>
@@ -41,5 +41,12 @@
 </i>
 </a>
 	</li>
-	<input [(ngModel)] = "searchString" (ngModelChange)="onSearch()">
+	<li>
+		<div class = "container">
+			<div class= "row">
+<!-- 	<i class="fa fa-search" aria-hidden="true" style="position:relative; top:10px;"></i> -->
+	<input  class="form-control" [(ngModel)] = "searchString" (ngModelChange)="inputChange.next()" placeholder="Search" style="width: 40vw; margin-left:15px; position:relative; top:5px;">
+</div>
+</div>
+</li>
 </ul>

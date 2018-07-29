@@ -4,6 +4,7 @@
 	width:97%;
 	height:300px;
 	overflow-y: auto;
+	left: 1%;
 }
 
 .sticky-nav {

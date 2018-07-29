@@ -14,7 +14,7 @@
 
 </div>
 <div [style.display]="popUp ? 'flex' : 'none'" [style.z-index]="popUp ? '2' : '-1'">
-				<app-category-nav class = "sticky-nav" (navClick)="onNavClick($event)" (search)="onSearch($event)"></app-category-nav>
+				<app-category-nav class = "sticky-nav" (navClick)="onNavClick($event)" style="left:1%;"></app-category-nav>
 
 <div class="sticky-bottom">
 
@@ -22,7 +22,8 @@
 		<div class = "card">
 			<div class= "card-body">
 				<div *ngIf="emojis">
-					<div *ngIf="cat_dict && searchString.length == 0">
+					<div *ngIf="cat_dict">
+						<div  [hidden] = "(searchString.length != 0)">
 						<div *ngFor="let category of cat_ordering">
 							<h5 id={{category}}>{{cat_headers[category]}}</h5>
 							<div class = "container-fluid">
@@ -33,6 +34,17 @@
 						</div>
 						</div>
 						</div>
+					</div>
+					<div *ngIf="searchString != 0">
+						<h5>Search Results</h5>
+							<div class = "container-fluid">
+								<div class = "row">
+							<div *ngFor = "let emoji_name of filteredEmojis">
+								<app-emoji [emoji_char] = "emojis[emoji_name]['char']" (emojiSelected)="onEmojiSelected($event, textField)"></app-emoji>
+							</div>
+						</div>
+						</div>
+					</div>
 					</div>
 				</div>
 			</div>

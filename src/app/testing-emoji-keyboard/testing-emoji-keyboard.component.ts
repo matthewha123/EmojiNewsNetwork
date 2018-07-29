@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewEmojiServiceService } from './new-emoji-service.service'
+import { Observable, of } from 'rxjs';
+
 @Component({
   selector: 'app-testing-emoji-keyboard',
   templateUrl: './testing-emoji-keyboard.component.html',
@@ -13,7 +15,9 @@ export class TestingEmojiKeyboardComponent implements OnInit {
   emoji_ordering: string[];
   emojis: object[];
   cat_dict: object;
-  searchString: string = '';
+
+  searchString = '';
+  filteredEmojis = [];
 
   cat_ordering = ['people', 'animals_and_nature', 'food_and_drink','activity','travel_and_places', 'objects','symbols','flags'];
   cat_headers = 
@@ -33,7 +37,14 @@ export class TestingEmojiKeyboardComponent implements OnInit {
        this.emojis = em;
        this.cat_dict = this.makeCatDict(this.emojis, this.emoji_ordering);
        // console.log("cat dict", this.cat_dict);
+
   	})
+    this.ES.searchString.subscribe((str) => {
+      this.searchString = str;
+      if(this.emojis && this.searchString.length != 0) this.filteredEmojis = this.getSearchFilteredEmojis(); 
+    })
+
+
   }
 
   onInputFocus() {
@@ -87,8 +98,7 @@ onNavClick(navString) {
    let el = document.getElementById(navString);
    el.scrollIntoView();
 }
-
-onSearch(str: string) {
-  this.searchString = str;
-}
+  getSearchFilteredEmojis() {
+    return this.ES.getSearchFilteredEmojis(this.emojis,this.emoji_ordering, this.searchString);
+  }
 }
