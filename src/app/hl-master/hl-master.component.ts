@@ -21,7 +21,7 @@ export class HlMasterComponent implements OnInit {
   // forwardID: number;
   // headline: HeadLine;
 
-  emojiString: string;
+  emojiString: string = '';
 
   constructor(private TS: TranslationService, private route: ActivatedRoute, private HS: HeadlineService) { 
   	this.hl_toDisplayID = +this.route.snapshot.paramMap.get('id');
@@ -62,14 +62,14 @@ export class HlMasterComponent implements OnInit {
 
   }
 
-  onEmojiSubmit(e) {
-    console.log(e);
-    this.TS.putTranslation(new Translation(-1, e, 0, 'matthew', 'today'), this.hl_toDisplayID)
+  onEmojiSubmit() {
+    console.log("EMOJI MODEL", this.emojiString);
+    this.TS.putTranslation(new Translation(-1, this.emojiString, 0, 'matthew', 'today'), this.hl_toDisplayID)
       .subscribe(trans => {
         console.log("Translation just sent was: ", trans);
         this.tMaster.getTranslations();
       });
-    // this.tMaster.getTranslations();
+    this.tMaster.getTranslations();
   }
 
 

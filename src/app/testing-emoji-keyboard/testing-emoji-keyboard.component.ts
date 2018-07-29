@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NewEmojiServiceService } from './new-emoji-service.service'
 import { Observable, of } from 'rxjs';
 
@@ -8,8 +8,8 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./testing-emoji-keyboard.component.css']
 })
 export class TestingEmojiKeyboardComponent implements OnInit {
-  @Input() model: string;
-
+  @Input() model;
+  @Output() modelChange = new EventEmitter<string>();
 	output: string = '';
 
 	popUp: boolean= false;
@@ -75,6 +75,7 @@ export class TestingEmojiKeyboardComponent implements OnInit {
     this.model += emoji_char;
     console.log(textField.selectionStart);
     this.moveCursorToEnd(textField, this.model);
+    this.modelChange.emit(this.model);
   }
 
   onInputBlur(textField:any) {

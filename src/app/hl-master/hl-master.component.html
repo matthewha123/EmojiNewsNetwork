@@ -5,8 +5,8 @@
 </div>
 <div class = "row">
 	<div class = "col-sm-10" style="margin:0 auto;">
-		<app-testing-emoji-keyboard [model] = "emojiString"></app-testing-emoji-keyboard>
-		<button (click)="onEmojiSubmit(emojiString)">submit</button>
+		<app-testing-emoji-keyboard [model] = "emojiString" (modelChange)="emojiString=$event"></app-testing-emoji-keyboard>
+		<button (click)="onEmojiSubmit()">submit</button>
 	</div>
 </div>
 <div align="center">
