@@ -21,7 +21,6 @@ export class CategoryNavComponent implements OnInit {
         debounceTime(500)
       ).subscribe(() => {
         this.search();
-        console.log('subscribing!!');
       });
    }
 

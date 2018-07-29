@@ -1,18 +1,6 @@
-<div class = "container-fluid">
-	<div class = "row">
-		<div class = "col-2">
-		</div>
-		<div class = "col">
-<input class ="form-control" #textField [(ngModel)] = "output" (focus)="onInputFocus();" (blur)="onInputBlur(textField)">
-<p>{{output}}</p>
-
-</div>
-<div class = "col-2">
-</div>
-</div>
+<input class ="form-control" #textField [(ngModel)] = "model" (focus)="onInputFocus();" (blur)="onInputBlur(textField)" style="width:100%;">
 
 
-</div>
 <div [style.display]="popUp ? 'flex' : 'none'" [style.z-index]="popUp ? '2' : '-1'">
 				<app-category-nav class = "sticky-nav" (navClick)="onNavClick($event)" style="left:1%;"></app-category-nav>
 

@@ -21,6 +21,8 @@ export class HlMasterComponent implements OnInit {
   // forwardID: number;
   // headline: HeadLine;
 
+  emojiString: string;
+
   constructor(private TS: TranslationService, private route: ActivatedRoute, private HS: HeadlineService) { 
   	this.hl_toDisplayID = +this.route.snapshot.paramMap.get('id');
   }
