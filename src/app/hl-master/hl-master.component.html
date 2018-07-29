@@ -4,9 +4,13 @@
 <app-headline-view #hl [headline]="headline" [backID]= "backID" [forwardID]="forwardID"></app-headline-view>
 </div>
 <div class = "row">
-	<div class = "col-sm-10" style="margin:0 auto;">
+	<div class = "col-sm-1">
+	</div>
+	<div class = "col-sm-9">
 		<app-testing-emoji-keyboard [model] = "emojiString" (modelChange)="emojiString=$event"></app-testing-emoji-keyboard>
-		<button (click)="onEmojiSubmit()">submit</button>
+	</div>
+	<div class = "col-sm-1">
+				<button (click)="onEmojiSubmit()" class="btn btn-primary">Submit</button>
 	</div>
 </div>
 <div align="center">
