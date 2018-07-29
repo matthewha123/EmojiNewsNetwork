@@ -9,17 +9,22 @@
 </div>
 <div class = "col-2">
 </div>
+</div>
+
 
 </div>
+<div [style.display]="popUp ? 'flex' : 'none'" [style.z-index]="popUp ? '2' : '-1'">
+				<app-category-nav class = "sticky-nav" (navClick)="onNavClick($event)" (search)="onSearch($event)"></app-category-nav>
+
 <div class="sticky-bottom">
-	<div *ngIf="popUp">
+
+	<div>
 		<div class = "card">
 			<div class= "card-body">
-				<app-category-nav></app-category-nav>
 				<div *ngIf="emojis">
-					<div *ngIf="cat_dict">
+					<div *ngIf="cat_dict && searchString.length == 0">
 						<div *ngFor="let category of cat_ordering">
-							<h5>{{cat_headers[category]}}</h5>
+							<h5 id={{category}}>{{cat_headers[category]}}</h5>
 							<div class = "container-fluid">
 								<div class = "row">
 							<div *ngFor = "let emoji_name of cat_dict[category]">

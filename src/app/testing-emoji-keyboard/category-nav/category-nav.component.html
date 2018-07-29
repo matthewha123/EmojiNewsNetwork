@@ -1,44 +1,45 @@
 <ul class="nav nav-tabs">
 	<li class = "nav-item">
-		<a class="nav-link active"><i class="fa fa-smile-o emoji-nav-icon" aria-hidden="true"></i></a>
+		<a class="nav-link" [ngClass]="{'active': selected_nav == 0}"  #people (click)="onNavClick(people,'people', 0)"><i class="fa fa-smile-o emoji-nav-icon" aria-hidden="true"></i></a>
 	</li>
 	<li class = "nav-item">
-		<a class="nav-link"><i class="fa fa-paw emoji-nav-icon" aria-hidden="true"></i>
+		<a class="nav-link" [ngClass]="{'active': selected_nav == 1}" #animal (click)="onNavClick(animal, 'animals_and_nature', 1)"><i class="fa fa-paw emoji-nav-icon" aria-hidden="true"></i>
 </a>
 	</li>
 	<li class = "nav-item">
-		<a class="nav-link"><i class="fa fa-cutlery emoji-nav-icon" aria-hidden="true"></i>
+		<a class="nav-link"[ngClass]="{'active': selected_nav == 2}"  #food (click)="onNavClick(food, 'food_and_drink', 2)"><i class="fa fa-cutlery emoji-nav-icon" aria-hidden="true"></i>
 </a>
 	</li>
 	<li class = "nav-item">
-		<a class="nav-link"><i class="fa fa-futbol-o emoji-nav-icon" aria-hidden="true">
+		<a class="nav-link" #activity (click)="onNavClick(activity, 'activity', 2)"><i class="fa fa-futbol-o emoji-nav-icon" aria-hidden="true">
 </i>
 </a>
 	</li>
 
 	<li class = "nav-item">
-		<a class="nav-link"><i class="fa fa-car emoji-nav-icon" aria-hidden="true">
+		<a class="nav-link" (click)="onNavClick(travel, 'travel_and_places', 4)"><i class="fa fa-car emoji-nav-icon" aria-hidden="true">
 
 </i>
 </a>
 	</li>
 
 	<li class = "nav-item">
-		<a class="nav-link"><i class="fa fa-paperclip emoji-nav-icon" aria-hidden="true">
+		<a class="nav-link" #objects (click)="onNavClick(objects, 'objects', 5)"><i class="fa fa-paperclip emoji-nav-icon" aria-hidden="true">
 
 </i>
 </a>
 	</li>
 	<li class = "nav-item">
-		<a class="nav-link"><i class="fa fa-asterisk emoji-nav-icon" aria-hidden="true">
+		<a class="nav-link" #symbols (click)="onNavClick(symbols, 'symbols', 6)"><i class="fa fa-asterisk emoji-nav-icon" aria-hidden="true">
 
 </i>
 </a>
 	</li>
 		<li class = "nav-item">
-		<a class="nav-link"><i class="fa fa-flag emoji-nav-icon" aria-hidden="true">
+		<a class="nav-link" #flags (click)="onNavClick(flags, 'flags', 7)"><i class="fa fa-flag emoji-nav-icon" aria-hidden="true">
 
 </i>
 </a>
 	</li>
+	<input [(ngModel)] = "searchString" (ngModelChange)="onSearch()">
 </ul>

@@ -1,8 +1,13 @@
 .sticky-bottom {
 	position: fixed;
 	bottom:0%;
-	z-index:10;
 	width:97%;
-	height:500px;
-	overflow-y: scroll;
+	height:300px;
+	overflow-y: auto;
+}
+
+.sticky-nav {
+	position:fixed;
+	bottom:300px;
+	z-index: 2;
 }

@@ -13,6 +13,8 @@ export class TestingEmojiKeyboardComponent implements OnInit {
   emoji_ordering: string[];
   emojis: object[];
   cat_dict: object;
+  searchString: string = '';
+
   cat_ordering = ['people', 'animals_and_nature', 'food_and_drink','activity','travel_and_places', 'objects','symbols','flags'];
   cat_headers = 
               { 'people': 'People',
@@ -79,5 +81,14 @@ export class TestingEmojiKeyboardComponent implements OnInit {
         el.value = newValue;
     }
     el.scrollTop = 999999;
+}
+
+onNavClick(navString) {
+   let el = document.getElementById(navString);
+   el.scrollIntoView();
+}
+
+onSearch(str: string) {
+  this.searchString = str;
 }
 }
