@@ -22,6 +22,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { TestingEmojiKeyboardComponent } from './testing-emoji-keyboard/testing-emoji-keyboard.component';
 import { NewEmojiPickerComponent } from './testing-emoji-keyboard/new-emoji-picker/new-emoji-picker.component';
 import { EmojiComponent } from './testing-emoji-keyboard/emoji/emoji.component';
+import { CategoryNavComponent } from './testing-emoji-keyboard/category-nav/category-nav.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { EmojiComponent } from './testing-emoji-keyboard/emoji/emoji.component';
     TestingEmojiKeyboardComponent,
     NewEmojiPickerComponent,
     EmojiComponent,
+    CategoryNavComponent,
   ],
   imports: [
     BrowserModule,

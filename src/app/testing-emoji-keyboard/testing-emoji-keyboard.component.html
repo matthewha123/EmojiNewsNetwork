@@ -3,7 +3,7 @@
 		<div class = "col-2">
 		</div>
 		<div class = "col">
-<input class ="form-control" [(ngModel)] = "output" (focus)="onInputFocus();">
+<input class ="form-control" #textField [(ngModel)] = "output" (focus)="onInputFocus();" (blur)="onInputBlur(textField)">
 <p>{{output}}</p>
 
 </div>
@@ -15,18 +15,21 @@
 	<div *ngIf="popUp">
 		<div class = "card">
 			<div class= "card-body">
-				<ul class="nav nav-tabs">
-					<li class = "nav-item">
-						<a class="nav-link active">All</a>
-					</li>
-					<li class = "nav-item">
-						<a class="nav-link">Smiley</a>
-					</li>
-					<li class = "nav-item">
-						<a class="nav-link">Sports</a>
-					</li>
-</ul>
-				new keyboard bitch
+				<app-category-nav></app-category-nav>
+				<div *ngIf="emojis">
+					<div *ngIf="cat_dict">
+						<div *ngFor="let category of cat_ordering">
+							<h5>{{cat_headers[category]}}</h5>
+							<div class = "container-fluid">
+								<div class = "row">
+							<div *ngFor = "let emoji_name of cat_dict[category]">
+								<app-emoji [emoji_char] = "emojis[emoji_name]['char']" (emojiSelected)="onEmojiSelected($event, textField)"></app-emoji>
+							</div>
+						</div>
+						</div>
+						</div>
+					</div>
+				</div>
 			</div>
 	</div>
 </div>

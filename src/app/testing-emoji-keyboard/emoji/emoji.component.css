@@ -1,0 +1,9 @@
+.emoji {
+	font-size: 18pt; 
+	margin:5px;
+}
+
+.emoji:hover {
+	cursor:pointer;
+	background-color: #c9cdd3;
+}
