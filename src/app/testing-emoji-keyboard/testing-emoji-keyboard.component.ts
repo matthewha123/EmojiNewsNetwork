@@ -104,4 +104,8 @@ onNavClick(navString) {
   getSearchFilteredEmojis() {
     return this.ES.getSearchFilteredEmojis(this.emojis,this.emoji_ordering, this.searchString);
   }
+
+  onEmojiPickerClose() {
+    this.popUp = false;
+  }
 }

@@ -4,14 +4,8 @@
 
 }
 
-.nav-container {
- padding-top:5px; 
- padding-bottom:5px;
+.emoji-nav-icon:hover {
+		cursor:pointer;
+	color: #c9cdd3;
 }
 
-@media (max-width:970px;) {
-.nav-container {
- padding-top:5px; 
- padding-bottom:20px!important;
-}	
-}
