@@ -1,14 +1,21 @@
-.sticky-bottom {
+.emoji-picker {
+	width: 72%;
+	left: 9.9%;
+	z-index: 2;
 	position: fixed;
+}
+
+.sticky-bottom {
 	bottom:0%;
-	width:97%;
 	height:300px;
-	overflow-y: auto;
-	left: 1%;
 }
 
 .sticky-nav {
-	position:fixed;
 	bottom:300px;
-	z-index: 2;
 }
+
+.emoji-container {
+	overflow-y: auto;
+	height:300px;
+}
+

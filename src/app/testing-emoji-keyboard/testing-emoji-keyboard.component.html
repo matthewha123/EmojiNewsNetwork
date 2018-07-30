@@ -1,13 +1,13 @@
 <input class ="form-control" #textField [(ngModel)] = "model" (focus)="onInputFocus();" (blur)="onInputBlur(textField)" style="width:100%;">
 
 
-<div [style.display]="popUp ? 'flex' : 'none'" [style.z-index]="popUp ? '2' : '-1'">
-				<app-category-nav class = "sticky-nav" (navClick)="onNavClick($event)" style="left:1%;"></app-category-nav>
+<div [style.display]="popUp ? 'flex' : 'none'">
 
+
+<div class = "emoji-picker">
 <div class="sticky-bottom">
-
-	<div>
-		<div class = "card">
+				<app-category-nav class = "sticky-nav" (navClick)="onNavClick($event)" style="left:1%; width:70%;"></app-category-nav>
+		<div class = "card emoji-container">
 			<div class= "card-body">
 				<div *ngIf="emojis">
 					<div *ngIf="cat_dict">
