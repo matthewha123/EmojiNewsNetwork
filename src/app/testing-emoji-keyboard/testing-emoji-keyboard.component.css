@@ -37,3 +37,7 @@
 		cursor:pointer;
 	color: #c9cdd3;
 }
+.contextmenu{
+	position:fixed;
+    z-index: 999;
+}

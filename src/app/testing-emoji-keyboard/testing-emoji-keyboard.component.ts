@@ -12,6 +12,11 @@ export class TestingEmojiKeyboardComponent implements OnInit {
   @Output() modelChange = new EventEmitter<string>();
 	output: string = '';
 
+  skinTonePickerX: number = 0;
+  skinTonePickerY: number = 0;
+  skinTonePicker = false;
+
+
 	popUp: boolean= false;
   constructor(private ES: NewEmojiServiceService) { }
   emoji_ordering: string[];
@@ -51,6 +56,7 @@ export class TestingEmojiKeyboardComponent implements OnInit {
 
   onInputFocus() {
   	this.popUp = true;
+    this.ES.setCurrEmojiContextMenu(undefined);
   }
 
   makeEmojiOrdering(rawJSON: object) {
@@ -107,5 +113,20 @@ onNavClick(navString) {
 
   onEmojiPickerClose() {
     this.popUp = false;
+        this.ES.setCurrEmojiContextMenu(undefined);
+
+  }
+
+    onEmojiRightClick(rcEvent) {
+    console.log("RIGHT CLICK!!!");
+    this.skinTonePickerX = rcEvent.clientX;
+    this.skinTonePickerY = rcEvent.clientY;
+    this.skinTonePicker = true;
+   console.log("X VAL", this.skinTonePickerX);
+   console.log("Y Val", this.skinTonePickerY);
+  }
+
+  disableSkinTonePicker() {
+    this.skinTonePicker = false;
   }
 }

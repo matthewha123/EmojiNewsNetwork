@@ -1,3 +1,14 @@
-<span class = "emoji" (click)="onLeftClick()">
+<div *ngIf="skinTonePicker===true && isFitz">
+<!-- 	<h1 style="z-index:999">WHAT IS HAPPENING</h1>
+ -->	<app-skintone-picker class= "contextmenu" [emoji_char]="emoji_char" (emojiSelected)="onPickerLeftClick($event)"></app-skintone-picker>
+ <div style="position:absolute">
+ <i class="fa fa-caret-down" aria-hidden="true" style="position:relative; top:-21.4px; left:13px; font-size:24pt;z-index:3; color:#f2f6fc;"></i>
+  <i class="fa fa-caret-down" aria-hidden="true" style="position:relative; top:-18px; left:-8px; font-size:32pt;z-index:2; color:#c3c6cc"></i>
+</div>
+
+</div>
+<span class = "emoji" (click)="onLeftClick()" (contextmenu)="onRightClick($event)" oncontextmenu="return false">
 	{{emoji_char}}
 </span>
+
+

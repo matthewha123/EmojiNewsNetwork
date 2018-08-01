@@ -9,7 +9,9 @@ import { catchError, map, tap, retry } from 'rxjs/operators';
 export class NewEmojiServiceService {
 
   constructor(private http: HttpClient) { }
-  public searchString = new Subject<string>()
+  public searchString = new Subject<string>();
+
+  public currEmojiContextMenu = new Subject<string>();
 
   getEmojis(): Observable<any> {
   	return this.http.get('assets/emojis.json');
@@ -33,4 +35,10 @@ export class NewEmojiServiceService {
 
   	return filteredEmojis;
   }
+
+  setCurrEmojiContextMenu(emoji:string) {
+  	this.currEmojiContextMenu.next(emoji);
+  }
+
+
 }

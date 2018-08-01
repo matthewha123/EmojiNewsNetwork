@@ -22,7 +22,7 @@
 							<div class = "container-fluid">
 								<div class = "row">
 							<div *ngFor = "let emoji_name of cat_dict[category]">
-								<app-emoji [emoji_char] = "emojis[emoji_name]['char']" (emojiSelected)="onEmojiSelected($event, textField)"></app-emoji>
+								<app-emoji [emoji_char] = "emojis[emoji_name]['char']" [isFitz]="emojis[emoji_name]['fitzpatrick_scale']" (emojiSelected)="onEmojiSelected($event, textField)"></app-emoji>
 							</div>
 						</div>
 						</div>
@@ -33,7 +33,7 @@
 							<div class = "container-fluid">
 								<div class = "row">
 							<div *ngFor = "let emoji_name of filteredEmojis">
-								<app-emoji [emoji_char] = "emojis[emoji_name]['char']" (emojiSelected)="onEmojiSelected($event, textField)"></app-emoji>
+								<app-emoji [emoji_char] = "emojis[emoji_name]['char']" [isFitz] = "emojis[emoji_name]['fitzpatrick_scale']" (emojiSelected)="onEmojiSelected($event, textField)"></app-emoji>
 							</div>
 						</div>
 						</div>

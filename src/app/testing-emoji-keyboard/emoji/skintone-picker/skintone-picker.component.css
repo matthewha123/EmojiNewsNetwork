@@ -1,0 +1,17 @@
+.tone-picker{
+	background-color:#f2f6fc;
+    position:relative; 
+    margin:0;
+    z-index: 3!important;
+}
+
+.emoji {
+	font-size: 18pt; 
+	padding:5px;
+}
+
+.emoji:hover {
+	cursor:pointer;
+		background-color: #c9cdd3;
+
+	}

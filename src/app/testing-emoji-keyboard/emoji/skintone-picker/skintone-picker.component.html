@@ -1,0 +1,7 @@
+<div class="card tone-picker" style="display:flex; flex-direction: row;">
+	<div *ngFor="let mod of TONE_MODIFIERS">
+	<span class = "emoji" (click)="onLeftClick(emoji_char+mod)" oncontextmenu="return false">
+		{{emoji_char+mod}}
+	</span>
+	</div>
+</div>
