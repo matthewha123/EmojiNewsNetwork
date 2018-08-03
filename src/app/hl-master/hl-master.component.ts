@@ -57,6 +57,8 @@ export class HlMasterComponent implements OnInit {
         // this.HS.InternalGetHeadlines();
         // this.hl_toDisplayID = undefined;
   		 }
+
+       // this.HS.addToHeadlinesSeen(hl_toDispla)
   		 // this.getHeadlines();
   	});
 

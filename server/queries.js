@@ -23,8 +23,16 @@ module.exports = {
 var translation_params = "(ID SERIAL PRIMARY KEY, txt TEXT, usr TEXT, score INTEGER, date timestamp with time zone)"
 
 function getHeadlines(req,res,next) {
-	db.any('select * from headlines ORDER BY ID DESC LIMIT 10')
+
+	console.log("Request parms", req.params);
+
+	let lowestID = req.params['lowestID'];
+
+	let whereConditional = (lowestID === '-1') ? ' ' : ' where ID < '+lowestID+' ';
+
+	db.any('select * from headlines'+whereConditional+'ORDER BY ID DESC LIMIT 10')
 		.then(function (data) {
+			console.log("RESPONSE DATA: ", data);
 			res.status(200)
 				.json({
 					status: 'success',
@@ -47,6 +55,15 @@ function getHeadline(req,res,next) {
 					data:data,
 					message: 'Retrieved single headline id: '+hl_id
 				})
+		})
+		.catch(function (err) {
+			console.log(err instanceof pgp.errors.QueryResultError);
+			res.status(404)
+				.json({
+					status: 'not found',
+					message: 'Headline '+hl_id+' not found'
+				});
+
 		})
 }
 
