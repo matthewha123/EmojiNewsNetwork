@@ -32,18 +32,19 @@ export class TranslationsMasterComponent implements OnInit {
      .subscribe(response => {
        console.log('getting translation response: ', response);
        this.translations = response["translations"];
+       console.log("now tmaster translations is: ", )
      })
   }
 
   onVote(voteData) {
     console.log("vote data", voteData);
 
-    let storageKey = 'vote'+'trans:'+voteData['trans_id']+'hl:'+this.headline['id'];
-    let storageVal = voteData['modifier'] == 1 ? 'up' : 'down';
+    let storageKey = 'vote'+'trans:'+voteData['trans_id'];
+    let storageVal = voteData['modifier'] >= 1 ? 'up' : 'down';
     if(voteData['noVote']) storageVal = "none";
     this.LSS.set(storageKey, storageVal);
 
-    this.TS.vote(voteData['trans_id'], this.headline['id'], voteData['modifier'])
+    this.TS.vote(voteData['trans_id'], voteData['modifier'])
       .subscribe((resp) => {
         console.log("vote response ", resp);
         this.getTranslations();

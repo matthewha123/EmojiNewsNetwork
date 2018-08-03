@@ -149,19 +149,12 @@ function vote(req,res,next) {
 	console.log(req.body);
 	let mod = parseInt(req.body['modifier']);
 	console.log("after mod");
-	let modifier = (mod === 1) ? "+ 1" : "- 1";
+	let modifier = parseInt(mod);
 	console.log("after modifier", modifier);
-	let db_name = 'num'+parseInt(req.body['hl_id']);
-	console.log("after db_name", db_name);
 	let trans_id = parseInt(req.body['trans_id']);
 	console.log("after trans_id ", trans_id);
-	let query = "UPDATE "+db_name+" SET score = score "+modifier+" WHERE ID = "+trans_id;
 
-	console.log("voting with params:: ", modifier, db_name, trans_id);
-
-
-
-	db.none('UPDATE translations SET score = score'+modifier+"WHERE ID = "+trans_id)
+	db.none('UPDATE translations SET score = score +'+modifier+"WHERE ID = "+trans_id)
 		.then(() => {
 			console.log("done the updating");
 			res.status(200)

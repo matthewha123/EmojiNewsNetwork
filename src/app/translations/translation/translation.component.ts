@@ -32,7 +32,7 @@ export class TranslationComponent implements OnInit {
   	console.log("received following translation:: ", this.translation);
   	// this.UpVoteColor = this.LSS.get('vote')==='up' ? this.uvColorHex : this.defaultHex;
   	// this.DownVoteColor = this.LSS.get('vote')==='down' ? this.dvColorHex : this.defaultHex;
-  	this.storageKey = 'vote'+'trans:'+this.translation['id']+'hl:'+this.hl_id;
+  	this.storageKey = 'vote'+'trans:'+this.translation['id'];
   }
 
   get UpvoteColor() {
@@ -46,28 +46,25 @@ export class TranslationComponent implements OnInit {
   }
 
   onUpvoteClick() {
-  	if(this.LSS.get(this.storageKey) != 'up') this.plusOne();
- 	else this.minusOne(true);
+    let storageVal = this.LSS.get(this.storageKey);
+    if(storageVal == 'up') this.Vote(-1, true);
+    else if(storageVal == 'down') this.Vote(2);
+    else this.Vote(1);
   }
 
   onDownvoteClick() {
-  	if(this.LSS.get(this.storageKey) != 'down') this.minusOne();
-  	else this.plusOne(true);
+    let storageVal = this.LSS.get(this.storageKey);
+  	if(storageVal == 'up') this.Vote(-2);
+    else if(storageVal == 'down') this.Vote(1, true);
+    else this.Vote(-1);
   }
 
-  plusOne(noVote?: boolean) {
-  		console.log("+1 to ", this.translation);
-  		let data = {trans_id: this.translation.id, modifier: 1, noVote: false};
-  		if(noVote) data['noVote'] = true;
-  		this.vote.emit(data);
 
-  }
-
-  minusOne(noVote?: boolean) {
-  		console.log("-1 to ", this.translation);
-  		let data = {trans_id: this.translation.id, modifier: -1, noVote: false};
-  		if(noVote) data['noVote'] = true;
-  		this.vote.emit(data);
+  Vote(modifier:number, noVote?:boolean) {
+    console.log(modifier, " to ", this.translation);
+    let data = {trans_id: this.translation.id, modifier: modifier, noVote:false};
+    if(noVote != undefined) data['noVote'] = noVote;
+    this.vote.emit(data);
   }
 
 }

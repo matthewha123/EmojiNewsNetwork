@@ -40,8 +40,8 @@ export class TranslationService {
         'Something bad happened; please try again later.');
   }
 
-  vote(trans_id: number, hl_id: number, mod: number): Observable<any> {
-    let data = {trans_id: trans_id, hl_id: hl_id, modifier: mod};
+  vote(trans_id: number, mod: number): Observable<any> {
+    let data = {trans_id: trans_id, modifier: mod};
     return this.http.post(this.translationURL+"/vote", data, httpOptions)
       .pipe(
         catchError(this.handleError)
