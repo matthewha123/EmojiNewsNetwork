@@ -64,7 +64,10 @@ export class HlMasterComponent implements OnInit {
 
   onEmojiSubmit() {
     console.log("EMOJI MODEL", this.emojiString);
-    this.TS.putTranslation(new Translation(-1, this.emojiString, 0, 'matthew', 'today'), this.hl_toDisplayID)
+    let user = 'matthew';
+    let uid = 1;
+
+    this.TS.putTranslation(new Translation(-1, this.emojiString, 0, user, uid, 'today', this.hl_toDisplayID))
       .subscribe(trans => {
         console.log("Translation just sent was: ", trans);
         this.tMaster.getTranslations();

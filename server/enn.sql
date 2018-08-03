@@ -10,6 +10,16 @@ CREATE TABLE headlines (
 	url TEXT
 );
 
+CREATE TABLE translations (
+	ID SERIAL PRIMARY KEY,
+	txt TEXT,
+	score INTEGER,
+	usr TEXT,
+	uid INTEGER,
+	date timestamp with time zone,
+	hl_id INTEGER REFERENCES headlines(ID)
+);
+
 INSERT INTO headlines (txt, publisher, url)
 	VALUES ('Trump Dead After Suffocating On Burger', 'New York Times', 'https://news.ycombinator.com/'),
 			('Koko dead :(', 'Washington Post', 'reddit.com'),

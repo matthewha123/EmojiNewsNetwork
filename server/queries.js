@@ -55,67 +55,38 @@ function putTranslation(req,res,next) {
 	let db_name = parseInt(req.body['hl_id'])
 
 	console.log("req body: ", req.body);
-	db.task(t => {
-		console.log("Creating table if necessary: num", db_name);
-		return t.none('CREATE TABLE IF NOT EXISTS num'+db_name+" "+translation_params)
-			.then( () => {
-				console.log("after creating table");
-				return t.none('insert into num'+db_name+' (txt, usr, score, date)'+
-					'values(${txt}, ${usr}, ${score}, now())', req.body);
-			})
-			.catch(error => {
-				return next(error);
-			});
-	})
-	.then(events => {
-		res.status(200)
-			.json({
-				status: 'success',
-				data: req.body,
-				message: 'posted',
-			});
-	})
-	.catch(error => {
-		return next(error);
-	});
+
+	db.none('insert into translations (txt, score, usr, uid, date, hl_id)'+
+				'values(${txt}, ${score}, ${usr}, ${uid}, now(), ${hl_id})', req.body)
+		.then(() => {
+			res.status(200)
+				.json({
+					status: 'sucess',
+					message: 'put the following translation',
+					data: req.body
+				});
+		})
+		.catch(error => {
+			return next(error);
+		});
 }
 
 function getTranslations(req,res,next) {
 	let hl_id = parseInt(req.params.hlID);
 	console.log('getting translations from headline id:', hl_id);
-	let qq = "SELECT to_regclass('enn.num"+hl_id+"'"+");";
 
-	db.task(t => {
-		return t.any("SELECT relname FROM pg_class WHERE relname = 'num"+hl_id+"';")
-			.then( (data) => {
-				if(data.length != 0) {
-					return t.any('select * from num'+hl_id)
-							.then(function (data) {
-								res.status(200)
-									.json({
-										'status': 'success',
-										'translations': data,
-										'message': 'retrieved translations for headline '+hl_id
-									});
-							})
-								.catch(function (err) {
-									return next(err);
-								})
-				}
-				else {
-					res.status(200)
-						.json({
-							'status': 'sucess',
-							'translations': [],
-							'message': 'no translations!'
-						});
-				}
-			})
-			.catch(function (err) {
-				return next(err);
-			})
-	})
-
+	db.any('select * from translations where hl_id='+hl_id)
+		.then((data) => {
+			res.status(200)
+				.json({
+					status:'success',
+					translations:data,
+					message: 'Retrieved translations for head line id: '+hl_id
+				});
+		})
+		.catch(error => {
+			return next(error);
+		});
 
 }
 
@@ -188,16 +159,18 @@ function vote(req,res,next) {
 
 	console.log("voting with params:: ", modifier, db_name, trans_id);
 
-	db.none(query)
+
+
+	db.none('UPDATE translations SET score = score'+modifier+"WHERE ID = "+trans_id)
 		.then(() => {
-			console.log("done the query:: ", query);
+			console.log("done the updating");
 			res.status(200)
 			.json({
 				status: 'success',
-				message: 'query: '+query
+				message: 'Updated translation '+trans_id+" with mod: "+modifier
 			})
 		})
 		.catch((err) => {
 			return next(err);
-		})
+		});
 }
