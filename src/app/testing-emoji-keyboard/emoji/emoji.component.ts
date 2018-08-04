@@ -15,10 +15,14 @@ export class EmojiComponent implements OnInit {
 	// Should know hether its fitzpatrick or not
 	// Should have the service to get the chosen skin color
 	// 
-	@Input() emoji_char: string;
-	@Input() isFitz: boolean;
+	@Input() emojiObj: any;
+  @Input() emojiName: string;
 
 	@Output() emojiSelected = new EventEmitter<string>();
+
+
+  get emojiChar() {return this.emojiObj['char']};
+  get isFitz() {return this.emojiObj['fitzpatrick_scale']};
 
 	skinTonePickerX: number = 0;
 	skinTonePickerY: number = 0;
@@ -30,13 +34,13 @@ export class EmojiComponent implements OnInit {
 
   ngOnInit() {
   	this.ES.currEmojiContextMenu.subscribe((currSelected) => {
-  		this.skinTonePicker = (currSelected===this.emoji_char);
+  		this.skinTonePicker = (currSelected===this.emojiChar);
   	})
   }
 
   onLeftClick() {
-  	console.log("Selected "+this.emoji_char);
-  	this.emojiSelected.emit(this.emoji_char);
+  	console.log("Selected "+this.emojiChar);
+  	this.emojiSelected.emit(this.emojiChar);
   	// console.log("🏿"+"👶", "👶"+"🏿");
   }
 
@@ -50,10 +54,15 @@ export class EmojiComponent implements OnInit {
   	this.skinTonePickerX = rcEvent.layerX;
   	this.skinTonePickerY = rcEvent.offsetY;
   	this.skinTonePicker = true;
-  	this.ES.setCurrEmojiContextMenu(this.emoji_char);
+  	this.ES.setCurrEmojiContextMenu(this.emojiChar);
   }
 
   disableSkinTonePicker() {
   	this.skinTonePicker = false;
+  }
+
+  onMouseOver() {
+    this.emojiObj['name'] = this.emojiName;
+    this.ES.displayEmojiDetails(this.emojiObj);
   }
 }

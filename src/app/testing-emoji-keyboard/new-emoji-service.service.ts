@@ -13,6 +13,8 @@ export class NewEmojiServiceService {
 
   public currEmojiContextMenu = new Subject<string>();
 
+  public currEmojiDetails = new Subject<any>();
+
   getEmojis(): Observable<any> {
   	return this.http.get('assets/emojis.json');
   }
@@ -40,5 +42,10 @@ export class NewEmojiServiceService {
   	this.currEmojiContextMenu.next(emoji);
   }
 
+
+  displayEmojiDetails(emoji_details) {
+    console.log('Will display these details: ',emoji_details);
+    this.currEmojiDetails.next(emoji_details);
+  }
 
 }

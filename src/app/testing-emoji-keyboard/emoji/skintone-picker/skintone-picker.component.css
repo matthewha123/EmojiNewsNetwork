@@ -7,7 +7,8 @@
 
 .emoji {
 	font-size: 18pt; 
-	padding:5px;
+	padding:3px;
+	border-radius:10px;
 }
 
 .emoji:hover {

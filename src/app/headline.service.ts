@@ -52,7 +52,7 @@ export class HeadlineService {
 
   private handleError(error: HttpErrorResponse) {
     if(error.status == 404) {
-      this.redirectToPageNotFound.next();
+      console.log(this.redirectToPageNotFound);
     }
     if (error.error instanceof ErrorEvent) {
       console.error('An error occured:', error.error.message);
@@ -62,7 +62,7 @@ export class HeadlineService {
         `body was ${error.error}`);
     }
 
-    return throwError('something fucked up');
+    return 'error';
   }
 
 
@@ -76,7 +76,9 @@ export class HeadlineService {
             this.headlineOrdering.push(hl['id']);
             this.headlineIDMapping[hl['id'].toString()] = hl;
         }
-        if(emitID && navigateFromHome) this.landingID.next(this.headlineOrdering[0]);
+        if(emitID && navigateFromHome) {
+          this.landingID.next(this.headlineOrdering[0]);
+        }
     });
   }
 
@@ -86,9 +88,14 @@ export class HeadlineService {
 
   InternalGetMissingHeadline(id:number) {
     this.getMissingHeadline(id).subscribe( (hl) => {
-      console.log
+
+      if(hl === undefined) {
+        this.redirectToPageNotFound.next();
+      } else {
       this.headlineOrdering.push(hl['id']);
       this.headlineIDMapping[hl['id'].toString()] = hl;
+      }
+
     })
   }
 
@@ -109,9 +116,10 @@ export class HeadlineService {
 
   addToHeadlinesSeen(id: number) {
     this.headlinesSeen.add(id);
+    console.log(this.headlinesSeen);
     if(this.headlinesSeen.size >= (this.headlineOrdering.length-2)) {
       console.log("should be getting new headlines rn");
-      console.log("headlines should be less than: "+Math.min(...this.headlineOrdering));
+      this.InternalGetHeadlines(false,Math.min(...this.headlineOrdering));
     }
   }
 }

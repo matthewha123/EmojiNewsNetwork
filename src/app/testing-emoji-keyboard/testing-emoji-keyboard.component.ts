@@ -37,6 +37,9 @@ export class TestingEmojiKeyboardComponent implements OnInit {
                 'symbols': 'Symbols',
                 'flags': 'Flags'
               }
+
+  emojiDetailsDisplay: any = undefined;
+
   ngOnInit() {
   	this.ES.getEmojis().subscribe((em) => {
   		 this.emoji_ordering = this.makeEmojiOrdering(em);
@@ -49,6 +52,10 @@ export class TestingEmojiKeyboardComponent implements OnInit {
     this.ES.searchString.subscribe((str) => {
       this.searchString = str;
       if(this.emojis && this.searchString.length != 0) this.filteredEmojis = this.getSearchFilteredEmojis(); 
+    });
+
+    this.ES.currEmojiDetails.subscribe((emoji_details) => {
+      this.emojiDetailsDisplay = emoji_details;
     })
 
 

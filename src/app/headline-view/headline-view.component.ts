@@ -25,4 +25,8 @@ export class HeadlineViewComponent implements OnInit {
 
   }
 
+  ngOnChanges() {
+    this.headlineService.addToHeadlinesSeen(this.headline['id']);
+  }
+
 }
