@@ -24,6 +24,7 @@ import { NewEmojiPickerComponent } from './testing-emoji-keyboard/new-emoji-pick
 import { EmojiComponent } from './testing-emoji-keyboard/emoji/emoji.component';
 import { CategoryNavComponent } from './testing-emoji-keyboard/category-nav/category-nav.component';
 import { SkintonePickerComponent } from './testing-emoji-keyboard/emoji/skintone-picker/skintone-picker.component';
+import { GoogleAuthComponent } from './google-auth/google-auth.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SkintonePickerComponent } from './testing-emoji-keyboard/emoji/skintone
     EmojiComponent,
     CategoryNavComponent,
     SkintonePickerComponent,
+    GoogleAuthComponent,
   ],
   imports: [
     BrowserModule,

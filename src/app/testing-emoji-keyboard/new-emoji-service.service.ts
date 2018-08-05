@@ -28,6 +28,7 @@ export class NewEmojiServiceService {
   	let filteredEmojis = [];
   	for(let key of emoji_keys) {
   		let keywords = emoji_dict[key]['keywords'];
+      keywords.push(key);
   		for(let word of keywords) {
   			if(word.includes(searchString)) {
   				filteredEmojis.push(key);

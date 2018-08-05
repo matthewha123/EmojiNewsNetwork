@@ -81,6 +81,5 @@ export class HlMasterComponent implements OnInit {
 	getIDs() {
 
 	}
-
 }
 
