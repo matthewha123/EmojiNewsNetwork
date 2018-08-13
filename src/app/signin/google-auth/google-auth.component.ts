@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../auth.service';
+
 declare const gapi: any;
 
 @Component({
@@ -8,13 +10,15 @@ declare const gapi: any;
 })
 export class GoogleAuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private AS: AuthService) { }
 
   ngOnInit() {
   }
 
 
 	  public auth2: any;
+
+
 	  public googleInit() {
 	    gapi.load('auth2', () => {
 	      this.auth2 = gapi.auth2.init({
@@ -38,7 +42,10 @@ export class GoogleAuthComponent implements OnInit {
 	        console.log('Email: ' + profile.getEmail());
 	        //YOUR CODE HERE
 
-
+	        this.AS.authenticateIDToken(googleUser.getAuthResponse().id_token)
+	        	.subscribe((resp) => {
+	        		console.log("AUTHENTICATION RESPONSE: ", resp);
+	        	})
 	      }, (error) => {
 	        alert(JSON.stringify(error, undefined, 2));
 	      });
