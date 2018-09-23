@@ -194,19 +194,25 @@ function vote(req,res,next) {
 		});
 }
 
-function find_user(username, password, cb_err, cb) {
-	db.any('select * from users where ID = '+username)
+function find_user(type, val, req, res, cb) {
+	console.log("Type is", type)
+	console.log("val is", val)
+	db.any("select * from users where $1:name = "+"'"+val+"';", [type])
 		.then((data) => {
-			cb(data);
+				console.log("found user");
+				console.log(data);
+				cb(data, req, res);
+
+
 		})
 	.catch((err) => {
-		cb_err(err);
+				cb({'name': 'error', 'constraint': 'user of that '+ type+' does not exist'}, req, res);
 	})
 }
 
 function create_user(usr, cb) {
-	db.none('insert into users (username, email, hash, salt) values(${username}, ${email}, ${hash}, ${salt}) '+ 
-				'', usr)
+
+	db.none('insert into users (${this:name}) values(${this:csv}) ', usr)
 		.then(() => {
 			console.log("done creating user");
 			cb('done');
