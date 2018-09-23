@@ -20,6 +20,14 @@ CREATE TABLE translations (
 	hl_id INTEGER REFERENCES headlines(ID)
 );
 
+CREATE TABLE users (
+	ID SERIAL PRIMARY KEY,
+	username TEXT UNIQUE,
+	email TEXT UNIQUE,
+	hash TEXT,
+	salt TEXT
+);
+
 INSERT INTO headlines (txt, publisher, url)
 	VALUES ('Trump Dead After Suffocating On Burger', 'New York Times', 'https://news.ycombinator.com/'),
 			('Koko dead :(', 'Washington Post', 'reddit.com'),

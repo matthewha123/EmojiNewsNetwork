@@ -9,6 +9,12 @@ var pgp = require('pg-promise')(options);
 var connectionString = 'postgres://postgres:celestial1@localhost:5432/enn';
 var db = pgp(connectionString);
 
+
+const postgres_error_msgs = {
+	'users_email_key': 'A User With That Email Already Exists',
+	'users_username_key': 'A User With That UserName Already Exists'
+}
+
 module.exports = {
 	getHeadlines: getHeadlines,
 	getHeadline: getHeadline,
@@ -16,7 +22,10 @@ module.exports = {
 	putHeadlines: putHeadlines,
 	getTranslations: getTranslations,
 	getSingleTranslation: getSingleTranslation,
-	vote: vote
+	vote: vote,
+	find_user: find_user,
+	create_user: create_user,
+	postgres_error_msgs: postgres_error_msgs
 	
 }
 
@@ -183,4 +192,26 @@ function vote(req,res,next) {
 		.catch((err) => {
 			return next(err);
 		});
+}
+
+function find_user(username, password, cb_err, cb) {
+	db.any('select * from users where ID = '+username)
+		.then((data) => {
+			cb(data);
+		})
+	.catch((err) => {
+		cb_err(err);
+	})
+}
+
+function create_user(usr, cb) {
+	db.none('insert into users (username, email, hash, salt) values(${username}, ${email}, ${hash}, ${salt}) '+ 
+				'', usr)
+		.then(() => {
+			console.log("done creating user");
+			cb('done');
+		})
+	.catch((err) => {
+		cb(err);
+	})
 }
