@@ -27,7 +27,7 @@ user_schema.prototype.generate_jwt = function() {
 		email: this.email,
 		user: this.user,
 		exp: parseInt(expiry.getTime() / 1000),
-	}, "MY_SECRET");
+	}, "MY_SECRET"); //TODO MAKE SURE TO STORE THIS AS AN ENVIRONMENT VARIABLE!!!
 
 }
 

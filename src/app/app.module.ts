@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import {FormsModule} from '@angular/forms';
+import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -24,6 +26,7 @@ import { NewEmojiPickerComponent } from './testing-emoji-keyboard/new-emoji-pick
 import { EmojiComponent } from './testing-emoji-keyboard/emoji/emoji.component';
 import { CategoryNavComponent } from './testing-emoji-keyboard/category-nav/category-nav.component';
 import { SkintonePickerComponent } from './testing-emoji-keyboard/emoji/skintone-picker/skintone-picker.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { SkintonePickerComponent } from './testing-emoji-keyboard/emoji/skintone
     EmojiComponent,
     CategoryNavComponent,
     SkintonePickerComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,7 @@ import { SkintonePickerComponent } from './testing-emoji-keyboard/emoji/skintone
     EmojiPickerModule,
     AppRoutingModule,
     StorageServiceModule,
+    NgbModalModule,
     FormsModule
 
   ],
