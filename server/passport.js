@@ -6,11 +6,10 @@ module.exports.register = function(req, res) {
 	user.create_salt_hash(req.body.password);
 
 	db.create_user(user, (ret) => {
-
-		if(ret['name'] == 'error') {
-			res.status(200)
+		if(ret.hasOwnProperty('error')) {
+			res.status(400)
 				.json({
-					"message": db.postgres_error_msgs[ret['constraint']]
+					"message": ret['error']
 				})
 		}
 		else {
@@ -29,7 +28,7 @@ module.exports.register = function(req, res) {
 }
 
 module.exports.login = function(req, res) {
-	console.log("trying to login");
+	console.log("LOGGING IN ", req.body)	
 	if(req.body.username != undefined) {
 		console.log("username is " +req.body.username);
 		db.find_user("username", req.body.username, req, res, login_cb);
@@ -39,11 +38,10 @@ module.exports.login = function(req, res) {
 }
 
 function login_cb(ret, req, res) {
-	if(ret['name'] == 'error') {
-		res.status(200)
+	if(ret.hasOwnProperty('error')) {
+		res.status(400)
 			.json({
-				"code": "wrong "+type,
-				"message": db.postgres_error_msgs[ret['constraint']]
+				"message": ret['error']
 			});
 	}
 	else {
@@ -53,16 +51,16 @@ function login_cb(ret, req, res) {
 
 		if(user.check_valid_pw(req.body.password)) {
 			let token = user.generate_jwt();
-
+			console.log("LOGIN SUCCESSFUL", user)
 			console.log(token)
-			res.status(200)
+			res.status(400)
 			.json({
 				"token": token,
 				"message": "Login For User:"+"Successful",
 				"user_data": ret[0]
 			})
 		} else {
-			res.status(200)
+			res.status(400)
 				.json({
 					"code": "wrong password",
 					"message": "Wrong password dumbass"

@@ -11,8 +11,10 @@ var db = pgp(connectionString);
 
 
 const postgres_error_msgs = {
-	'users_email_key': 'A User With That Email Already Exists',
-	'users_username_key': 'A User With That UserName Already Exists'
+	'register_email_exists': 'A User With That Email Already Exists',
+	'register_username_exists': 'A User With That UserName Already Exists',
+	'login_email_notexists': 'There is no user with that email',
+	'login_username_notexists': 'There is no user with that username',
 }
 
 module.exports = {
@@ -195,29 +197,37 @@ function vote(req,res,next) {
 }
 
 function find_user(type, val, req, res, cb) {
-	console.log("Type is", type)
-	console.log("val is", val)
+	console.log("Finding user by", type, val)
 	db.any("select * from users where $1:name = "+"'"+val+"';", [type])
 		.then((data) => {
-				console.log("found user");
-				console.log(data);
-				cb(data, req, res);
-
-
+			cb(data, req, res);
 		})
 	.catch((err) => {
-				cb({'name': 'error', 'constraint': 'user of that '+ type+' does not exist'}, req, res);
+		console.log("Could not find user with", type, val)
+		let constraint = (type == 'email') ? postgres_error_msgs['login_email_notexists'] : postgres_error_msgs['login_username_notexists']
+			cb({'error': constraint}, req, res);
 	})
 }
 
 function create_user(usr, cb) {
 
+	console.log("Attempting to create user", usr)
 	db.none('insert into users (${this:name}) values(${this:csv}) ', usr)
 		.then(() => {
-			console.log("done creating user");
+			console.log("REGISTRATION SUCCESSFUL!")
 			cb('done');
 		})
 	.catch((err) => {
-		cb(err);
-	})
+		let error_msg = "";
+		console.log(err.message || err);
+		if((err.message || err) == "duplicate key value violates unique constraint \"users_username_key\"") {
+			error_msg = postgres_error_msgs["register_username_exists"];
+		} else {
+			error_msg = postgres_error_msgs["register_email_exists"];
+		}
+		cb({"error": error_msg});
+	});
+
+
+
 }
