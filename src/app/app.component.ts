@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
 
   constructor(private TS: TranslationService, private HS: HeadlineService, private router: Router, private route: ActivatedRoute ) {}
   ngOnInit() {
-    this.HS.InternalGetHeadlines(true);
+    this.HS.getHeadlines(true);
     this.HS.redirectToPageNotFound.subscribe(() => {
         this.router.navigate(["/woopsy"]);
     })

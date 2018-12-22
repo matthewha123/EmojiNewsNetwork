@@ -23,7 +23,7 @@ export class HeadlineService {
 
   constructor(private http: HttpClient) { }
 
-  private getHeadlines(lowestID: number): Observable<HeadLine[]>{
+  private _getHeadlines(lowestID: number): Observable<HeadLine[]>{
 
     return this.http.get<HeadLine[]>(this.headlinesURL+'/many'+'/'+lowestID)
     .pipe(
@@ -36,7 +36,7 @@ export class HeadlineService {
       }));
   }
 
-  private getMissingHeadline(id:number): Observable<HeadLine>{
+  private _getMissingHeadline(id:number): Observable<HeadLine>{
 
     return this.http.get<HeadLine>(this.headlinesURL+'/'+id)
     .pipe(
@@ -66,10 +66,10 @@ export class HeadlineService {
   }
 
 
-  InternalGetHeadlines(navigateFromHome?: boolean, lowestID?: number) {
+  getHeadlines(navigateFromHome?: boolean, lowestID?: number) {
 
     let getHeadlinesIDArg = (lowestID === undefined) ? -1 : lowestID;
-    this.getHeadlines(getHeadlinesIDArg).subscribe( (headlines) => {
+    this._getHeadlines(getHeadlinesIDArg).subscribe( (headlines) => {
           let emitID = false;
           if(this.headlineOrdering.length === 0) emitID = true;
          for(let hl of headlines) {
@@ -82,12 +82,12 @@ export class HeadlineService {
     });
   }
 
-  InternalGetHeadline(id: number) {
+  getHeadline(id: number) {
     return this.headlineIDMapping[id];
   }
 
-  InternalGetMissingHeadline(id:number) {
-    this.getMissingHeadline(id).subscribe( (hl) => {
+  getMissingHeadline(id:number) {
+    this._getMissingHeadline(id).subscribe( (hl) => {
 
       if(hl === undefined) {
         this.redirectToPageNotFound.next();
