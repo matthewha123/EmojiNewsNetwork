@@ -10,7 +10,7 @@
 			    <input type="text" class="form-control"placeholder="Enter Password">
 			    <div class = "row" style= "text-align: center;">
 			    	<div class = "col">
-			    <p class = "login-bottom-text" (click)="modal.dismiss(); toggle_create(); open(create)">Create New Account</p>
+			    <p class = "login-bottom-text" (click)="modal.dismiss(); goToCreateNewAccount(); open(create, true)">Create New Account</p>
 			</div>
 			<div class = "col">
 			    <p class = "login-bottom-text">Forgot Password?</p>
@@ -35,6 +35,8 @@
 			    <input type="text" class="form-control"placeholder="Enter A User Name" style = "margin-bottom: 10px;">
 			    <input type="text" class="form-control"placeholder="Enter A Email" style = "margin-bottom: 10px;">
 			    <input type="text" class="form-control"placeholder="Enter A Password">
+				<button class="btn btn-lg btn-primary" (click)="onClickCreate()">Create</button>
+
 	</div>
 	</ng-template>
 

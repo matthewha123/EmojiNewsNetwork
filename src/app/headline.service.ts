@@ -51,6 +51,7 @@ export class HeadlineService {
 
 
   private handleError(error: HttpErrorResponse) {
+    console.log("Handling error:", error)
     if(error.status == 404) {
       console.log(this.redirectToPageNotFound);
     }
@@ -58,8 +59,7 @@ export class HeadlineService {
       console.error('An error occured:', error.error.message);
     } else {
       console.error(
-        `Node server returned coed ${error.status},` +
-        `body was ${error.error}`);
+        "Could Not Connect To Remote Server");
     }
 
     return 'error';
@@ -69,7 +69,14 @@ export class HeadlineService {
   getHeadlines(navigateFromHome?: boolean, lowestID?: number) {
 
     let getHeadlinesIDArg = (lowestID === undefined) ? -1 : lowestID;
-    this._getHeadlines(getHeadlinesIDArg).subscribe( (headlines) => {
+    this._getHeadlines(getHeadlinesIDArg).subscribe( (resp) => {
+          let headlines = undefined;
+          console.log("get headlines response", resp)
+          if(resp == undefined) {
+            this.redirectToPageNotFound.next();
+          } else {
+            headlines = resp;
+          }
           let emitID = false;
           if(this.headlineOrdering.length === 0) emitID = true;
          for(let hl of headlines) {
