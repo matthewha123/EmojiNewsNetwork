@@ -119,7 +119,7 @@ export class HeadlineService {
     console.log(this.headlinesSeen);
     if(this.headlinesSeen.size >= (this.headlineOrdering.length-2)) {
       console.log("should be getting new headlines rn");
-      this.InternalGetHeadlines(false,Math.min(...this.headlineOrdering));
+      this.getHeadlines(false,Math.min(...this.headlineOrdering));
     }
   }
 }
