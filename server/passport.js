@@ -1,5 +1,6 @@
 var db = require('./queries');
 var user_schema = require('./users').user_schema;
+var jwt = require('jsonwebtoken');
 
 module.exports.register = function(req, res) {
 	let user = new user_schema(req.body.username, req.body.email);
@@ -45,10 +46,15 @@ module.exports.verify = function(req, res) {
 	if(req.body.token != undefined) {
 		console.log("Received token", req.body.token);
 		//need to get the user specified by the request
-		if(req.body.username != undefined) {
-			db.find_user("username", req.body.username, req, res, verify_cb);
+
+		let decoded = jwt.decode(req.body.token);
+		if(decoded.username != undefined) {
+			db.find_user("username", decoded.username, req, res, verify_cb);
 		} else {
-			db.find_user("email", req.body.email, req, res, verify_cb);
+			res.status(400)
+			.json({
+				"message": "Malformed JWT"
+			});
 		}
 	} else {
 		res.status(400)
@@ -73,7 +79,8 @@ function verify_cb(ret, req, res) {
 		if(valid === true) {
 			res.status(200)
 				.json({
-					"message": "Successfully Verified"
+					"message": "Successfully Verified",
+					"user": user
 				});
 		} else {
 			res.status(400)

@@ -1,1 +1,7 @@
-<button class="btn btn-lg btn-primary" (click)="openLoginModal()">Sign In</button>
+<div *ngIf="!signedIn else signed_in">
+	<button class="btn btn-lg btn-primary" (click)="openLoginModal()">Sign In</button>
+</div>
+
+<ng-template #signed_in>
+		<button class="btn btn-lg btn-primary" (click)="signOut()">Sign Out</button>
+</ng-template>
