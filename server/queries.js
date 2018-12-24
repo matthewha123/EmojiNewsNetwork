@@ -212,10 +212,11 @@ function find_user(type, val, req, res, cb) {
 function create_user(usr, cb) {
 
 	console.log("Attempting to create user", usr)
-	db.none('insert into users (${this:name}) values(${this:csv}) ', usr)
-		.then(() => {
-			console.log("REGISTRATION SUCCESSFUL!")
-			cb('done');
+	db.one('insert into users (${this:name}) values(${this:csv}) RETURNING ID', usr)
+		.then((data) => {
+			console.log("REGISTRATION SUCCESSFUL!");
+			console.log("ID of created user", data);
+			cb(data);
 		})
 	.catch((err) => {
 		let error_msg = "";

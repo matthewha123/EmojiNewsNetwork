@@ -25,6 +25,6 @@ router.get('/api/enn/translation/:hlID/:id', db.getSingleTranslation);
 router.post('/api/enn/translation/vote', db.vote);
 router.post('/api/enn/register', auth.register);
 router.post('/api/enn/login', auth.login);
-
+router.post('/api/enn/verify', auth.verify)
 
 module.exports = router;

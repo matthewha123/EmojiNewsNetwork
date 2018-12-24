@@ -13,6 +13,7 @@ module.exports.register = function(req, res) {
 				})
 		}
 		else {
+			user.set_id(ret.id)
 			let token = user.generate_jwt();
 
 			console.log(token)
@@ -34,6 +35,52 @@ module.exports.login = function(req, res) {
 		db.find_user("username", req.body.username, req, res, login_cb);
 	} else {
 		db.find_user("email", req.body.email, req, res, login_cb);
+	}
+}
+
+module.exports.verify = function(req, res) {
+	//verify that the token's email, id, and user match
+	//verify the signature
+	//then return okay
+	if(req.body.token != undefined) {
+		console.log("Received token", req.body.token);
+		//need to get the user specified by the request
+		if(req.body.username != undefined) {
+			db.find_user("username", req.body.username, req, res, verify_cb);
+		} else {
+			db.find_user("email", req.body.email, req, res, verify_cb);
+		}
+	} else {
+		res.status(400)
+		.json({
+			"message": "No JWT token"
+		})
+	}
+
+}
+
+function verify_cb(ret, req, res) {
+	if(ret.hasOwnProperty('error')) {
+		res.status(400)
+			.json({
+				"message": ret['error']
+			});
+	}
+	else {
+		user = new user_schema(ret[0]['username'], ret[0]['email']);
+		user._id = ret[0]['id'];
+		let valid = user.verify_jwt(req.body.token);
+		if(valid === true) {
+			res.status(200)
+				.json({
+					"message": "Successfully Verified"
+				});
+		} else {
+			res.status(400)
+				.json({
+					"message": "Invalid Token, Please Sign In Again"
+				});
+		}
 	}
 }
 
