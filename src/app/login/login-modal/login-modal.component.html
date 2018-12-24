@@ -1,0 +1,35 @@
+
+<div class="modal-header">
+	    <h2 class="modal-title" id="modal-basic-title">{{mode}}</h2>
+	    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+</div>
+<div class = "modal-body">
+
+		<div [ngSwitch] = "mode">
+				<div *ngSwitchCase="'Sign In'">
+			    <input type="text" class="form-control"placeholder="Enter Username or Email" style = "margin-bottom: 10px;">
+			    <input type="text" class="form-control"placeholder="Enter Password">
+			    <div class = "row" style= "text-align: center;">
+			    	<div class = "col">
+			    <p class = "login-bottom-text" (click) = "goToCreateAccount()">Create New Account</p>
+			</div>
+			<div class = "col">
+			    <p class = "login-bottom-text">Forgot Password?</p>
+			</div>
+				</div>
+		</div>
+
+
+		<div *ngSwitchCase="'Create Account'">
+				<form [formGroup]="createUserForm">
+					<input type="text" class="form-control" placeholder="Enter A User Name" style = "margin-bottom: 10px;" formControlName="username">
+				    <input type="text" class="form-control"placeholder="Enter A Email" style = "margin-bottom: 10px;" formControlName = "email">
+				    <input type="text" class="form-control"placeholder="Enter A Password" formControlName="password">
+
+					<button class="btn btn-lg btn-primary" (click)="onClickCreate()" [disabled]="!createUserForm.valid">Create</button>
+			</form>
+		</div>
+		</div>
+</div>

@@ -5,7 +5,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import {FormsModule} from '@angular/forms';
 import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -27,6 +27,7 @@ import { EmojiComponent } from './testing-emoji-keyboard/emoji/emoji.component';
 import { CategoryNavComponent } from './testing-emoji-keyboard/category-nav/category-nav.component';
 import { SkintonePickerComponent } from './testing-emoji-keyboard/emoji/skintone-picker/skintone-picker.component';
 import { LoginComponent } from './login/login.component';
+import { LoginModalComponent } from './login/login-modal/login-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { LoginComponent } from './login/login.component';
     CategoryNavComponent,
     SkintonePickerComponent,
     LoginComponent,
+    LoginModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,10 +58,14 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     StorageServiceModule,
     NgbModalModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    LoginModalComponent
+  ]
 })
 export class AppModule { }

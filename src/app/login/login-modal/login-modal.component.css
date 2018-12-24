@@ -1,0 +1,9 @@
+.login-bottom-text {
+	color: #aeb1b7;
+
+}
+
+.login-bottom-text:hover{
+		color: #c9cdd3;
+		cursor:pointer;
+}
