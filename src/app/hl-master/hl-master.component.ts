@@ -5,6 +5,7 @@ import { TranslationService } from '../translations/translation.service';
 import { TranslationsMasterComponent } from '../translations/translations-master/translations-master.component';
 import { ActivatedRoute } from '@angular/router';
 import { HeadlineService } from '../headline.service';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-hl-master',
@@ -23,7 +24,7 @@ export class HlMasterComponent implements OnInit {
 
   emojiString: string = '';
 
-  constructor(private TS: TranslationService, private route: ActivatedRoute, private HS: HeadlineService) { 
+  constructor(private TS: TranslationService, private route: ActivatedRoute, private HS: HeadlineService, private LS: LoginService) { 
   	this.hl_toDisplayID = +this.route.snapshot.paramMap.get('id');
   }
 
@@ -59,9 +60,15 @@ export class HlMasterComponent implements OnInit {
 
   onEmojiSubmit() {
     console.log("EMOJI MODEL", this.emojiString);
-    let user = 'matthew';
-    let uid = 1;
+    let user = 'anon';
+    let uid = -1;
 
+    let loggedInUser = this.LS.getUser();
+    if(loggedInUser != undefined) {
+      user = loggedInUser["username"];
+      uid = loggedInUser["id"];
+    }
+ 
     this.TS.putTranslation(new Translation(-1, this.emojiString, 0, user, uid, 'today', this.hl_toDisplayID))
       .subscribe(trans => {
         console.log("Translation just sent was: ", trans);

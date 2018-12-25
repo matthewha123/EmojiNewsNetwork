@@ -9,8 +9,14 @@
 
 		<div [ngSwitch] = "mode">
 				<div *ngSwitchCase="'Sign In'">
-			    <input type="text" class="form-control"placeholder="Enter Username or Email" style = "margin-bottom: 10px;">
-			    <input type="text" class="form-control"placeholder="Enter Password">
+				<form [formGroup]="loginForm">
+				    <input type="text" class="form-control"placeholder="Enter Username or Email" style = "margin-bottom: 10px;" formControlName="usernameEmail">
+
+				    <input type="text" class="form-control"placeholder="Enter Password" formControlName="password">
+				   <ngb-alert *ngIf="invalidClosed == false" (click)="invalidClosed = true">Invalid Username or Password</ngb-alert>
+
+				    <button class="btn btn-md btn-primary loginButton" (click)="onClickLogin()" [disabled]="!loginForm.valid" >Log In</button>
+				</form>
 			    <div class = "row" style= "text-align: center;">
 			    	<div class = "col">
 			    <p class = "login-bottom-text" (click) = "goToCreateAccount()">Create New Account</p>

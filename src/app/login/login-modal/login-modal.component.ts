@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Validators, EmailValidator } from '@angular/forms';
 import { LoginService } from '../login.service';
@@ -24,6 +24,13 @@ export class LoginModalComponent implements OnInit {
 
   });
 
+  private loginForm = new FormGroup({
+    usernameEmail: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  })
+
+  private invalidClosed: boolean = true;
+
   ngOnInit() {
 
   }
@@ -36,6 +43,23 @@ export class LoginModalComponent implements OnInit {
   	this.mode = "Create Account";
   }
 
+  onClickLogin() {
+    console.log("Login Data:", this.loginForm.value)
+    this.LS.login(this.loginForm.value)
+      .subscribe((resp) => {
+
+        if(resp.hasOwnProperty("token")) {
+          console.log("Login http response", resp);
+          this.LSS.set("jwt", resp["token"]);
+          // console.log("LOGIN TOKEN", resp["token"]);
+          location.reload();
+        } else {
+          this.invalidClosed = false;
+        }
+
+      })
+  }
+
   onClickCreate() {
   	console.log("Create User Button Clicked!");
   	this.LS.register(this.createUserForm.value)
@@ -43,7 +67,7 @@ export class LoginModalComponent implements OnInit {
   			console.log("Reigster http response", resp);
   			console.log("JWT TOKEN IS", resp["token"]);
   			this.LSS.set("jwt", resp["token"]);
-  			// location.reload();
+  			location.reload();
   			//set the username, email, id here
 
   			//Flow

@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import {FormsModule} from '@angular/forms';
-import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -58,8 +58,9 @@ import { LoginModalComponent } from './login/login-modal/login-modal.component';
     AppRoutingModule,
     StorageServiceModule,
     NgbModalModule,
+    NgbAlertModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
 
   ],
   providers: [],

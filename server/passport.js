@@ -93,7 +93,7 @@ function verify_cb(ret, req, res) {
 
 function login_cb(ret, req, res) {
 	if(ret.hasOwnProperty('error')) {
-		res.status(400)
+		res.status(200)
 			.json({
 				"message": ret['error']
 			});
@@ -102,19 +102,20 @@ function login_cb(ret, req, res) {
 		user = new user_schema(ret[0]['username'], ret[0]['email']);
 		user.hash = ret[0]['hash'];
 		user.salt = ret[0]['salt'];
+		user.set_id(ret[0]['id'])
 
 		if(user.check_valid_pw(req.body.password)) {
 			let token = user.generate_jwt();
 			console.log("LOGIN SUCCESSFUL", user)
 			console.log(token)
-			res.status(400)
+			res.status(200)
 			.json({
 				"token": token,
 				"message": "Login For User:"+"Successful",
 				"user_data": ret[0]
 			})
 		} else {
-			res.status(400)
+			res.status(200)
 				.json({
 					"code": "wrong password",
 					"message": "Wrong password dumbass"

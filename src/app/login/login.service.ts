@@ -27,7 +27,7 @@ export class LoginService {
 
   register(registrationData) {
   	console.log(registrationData)
-  	return this.http.post(this.baseURL+"register", registrationData, httpOptions)
+  	return this.http.post(this.baseURL+"register", registrationData, httpOptions);
       .pipe(
         catchError(this.handleError)
           );
@@ -51,6 +51,17 @@ export class LoginService {
   		.pipe(
   			catchError(this.handleError)
   		);
+  }
+
+  login(loginData) {
+  	let _loginData = {"password":loginData["password"]};
+  	let userIdentifier = (loginData["usernameEmail"].match('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')) ? 'email' : 'username';
+  	_loginData[userIdentifier] = loginData["usernameEmail"];
+  	console.log("trying to Login With", _loginData); 
+
+  	return this.http.post(this.baseURL+"login", _loginData, httpOptions)
+  		.pipe(
+  			catchError(this.handleError));
   }
 
 
